@@ -23,15 +23,6 @@ import controllers from '../controllers/index.js'
         this.get('#/quiz', controllers.quiz.get.quiz)
         // this.get('#/quiz', controllers.quiz.post.quiz)
     
-    
-        // // //recipe
-        // this.get('#/cause/dashboard', controllers.recipe.get.dashboard)
-        // this.get('#/cause/create', controllers.cause.get.create)
-        // //causeId го закачаме тук, директно към всяко кликване към details.
-        // this.get('#/cause/details/:causeId', controllers.cause.get.details)
-        // this.post('#/cause/create', controllers.cause.post.create)
-        // this.get('#/cause/close/:causeId', controllers.cause.del.close)
-        // this.post('#/cause/donate/:causeId', controllers.cause.put.donate)
     })
     
     
