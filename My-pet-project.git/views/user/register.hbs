@@ -1,0 +1,33 @@
+{{> header}}
+<img  id="default-image" src='../../images/profile-picture.png' style="display: none;"/>
+<div class="user-register-wrapper">
+  <form class="user-register-form" name='log-form' action="#/user/register" method="POST">
+
+    <span class="register-form-title">
+      Register
+    </span>
+
+
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" id="email" name="email" placeholder="User@email.com">
+    </p>
+    <p class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" name="password" id="register-pass" placeholder="Password">
+    </p>
+    <p class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" name="rePassword" id="rep-pass" placeholder="Repeat password">
+    </p>
+    <p class="submit-btn-wrapper">
+      <button class="submit-btn" type="submit">CREATE ACCOUNT</button>
+    </p>
+    <p class="register-field-redirect">
+      <span>You already have a profile? Then just click <a href="#/user/login">here</a></span>
+    </p>
+
+  </form>
+</div>
+
+{{> footer}}

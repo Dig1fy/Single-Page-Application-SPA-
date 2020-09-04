@@ -1,0 +1,35 @@
+
+/* form buttons */
+.submit-btn {
+    height       : 42px;
+    width        : 440px;
+    font-size    : 17px;
+    padding      : 5px 40px;
+    border-radius: 2%;
+
+    box-shadow      : 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(161, 153, 56);
+    text-shadow     : 1px 1px 1px rgb(21, 13, 128);
+}
+
+.submit-btn-wrapper {
+    padding-top    : 55px;
+    padding-bottom : 35px;
+    display        : -webkit-box;
+    display        : -webkit-flex;
+    display        : -moz-box;
+    display        : -ms-flexbox;
+    justify-content: center;
+
+}
+
+.submit-btn:hover {
+    cursor          : pointer;
+    background-color: rgb(136, 122, 41);
+    color           : rgb(37, 70, 43);
+}
+
+
+
+
+

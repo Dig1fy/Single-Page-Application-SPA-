@@ -1,0 +1,37 @@
+<header class="header-main-wrapper">
+    {{!-- These should be nested, otherwise an underscore appears after the image...  --}}
+
+    <div class="nav-section-wrapper">
+        <a class="home-img-wrapper" href="#/home"><img class="home-img" src="../../images/homeImg.png">
+            <span class="home-page-hidden-text">Tooltip text</span>
+        </a>
+        <a class="nav-section" href="#/sections/stories">OUR STORIES</a>
+        <a class="nav-section" href="">ADOPT</a>
+        <a class="nav-section" href="">SEEK FOR HELP</a>
+        <a class="nav-section" href="">ABOUT US</a>
+        <a class="nav-section" href="">CONTACT US</a>
+        <nav class="nav-bar-log">
+
+            {{#if isLoggedIn}}
+            <a class="profile-img-header-wrapper" href="#/user/profile">
+                <img class="profile-image-header" src={{photoURL}}>
+            </a>
+            <a>Hello, {{username}}</a>
+            <div class="dropdown-btn-wrapper">
+                <button class="header-dropbtn">
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#/user/profile">View profile</a>
+                    <a href="#">Link 2</a>
+                    <a href="#/user/logout">Logout</a>
+                </div>
+            </div>
+            {{else}}
+            <a class="log-nav" href="#/user/login">Login</a>
+            <a class="log-nav" href="#/user/register">Register</a>
+            {{/if}}
+
+        </nav>
+    </div>
+</header>

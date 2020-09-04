@@ -1,0 +1,234 @@
+.home-content {
+    position       : static;
+    justify-content: center;
+    text-align     : center;
+    max-width      : 75%;
+    height         : 115%;
+}
+
+.home-content-wrapper{
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.head-pic-wrapper {
+    position: relative;
+    text-align: center;
+    width            : 100%;
+    height           : 25%;
+    /* background-repeat: no-repeat; */
+    /* z-index          : -1; */
+    /* margin-right: 125px; */
+}
+
+.head-pic {
+    height    : auto;
+    max-height: 550px;
+    width: 55%;    
+}
+
+.home-page-hidden-text{
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+      
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+}
+
+.head-pic-wrapper :hover{
+    visibility: visible;
+}
+
+.featurette-heading {
+    font-size: 40px;
+    position : sticky;
+    color    : rgb(3, 63, 116);
+
+    text-align   : center;
+    text-shadow  : 2.1px 2px 2px rgb(0, 34, 17);
+    opacity      : 0.3;
+    /* background: -webkit-linear-gradient(bottom, #79e7a4, #392abb, rgb(441,112,4145)); */
+}
+
+.featurette-heading,
+.text-highlighted {
+    color                     : rgb(138, 189, 124);
+    text-shadow               : 2.1px 2px 2px rgb(1, 1, 231);
+    background-image          : linear-gradient(left, rgb(105, 105, 238), rgb(43, 161, 43), rgb(71, 71, 51), rgb(47, 98, 207), rgb(6, 34, 8));
+    -webkit-text-fill-color   : transparent;
+    /* -webkit-background-clip: text; */
+}
+
+.new-article {
+    padding-top: 100px;
+    margin-top : 100%;
+}
+
+
+
+
+
+
+/* 
+ *   SECTION - STORIES  
+ */
+
+.stories-section-wrapper {
+    position: static;
+    padding-top: 2%;
+    text-align: center;
+
+    position: static;
+    max-height: 50%;
+
+}
+
+.stories-section-wrapper h1 {
+    position: static;
+    /* height: 825px; */
+    max-height: 50%;
+    font-family  : 'Allura', cursive;
+    font-size    : 52px;
+    position: static;
+    text-align: center;
+    /* margin-left: 350px; */
+}
+
+.stories {
+    display        : inline-flex;
+    left           : 50%;
+    top            : 50%;
+    justify-content: center;
+    width          : auto;
+    text-align     : center;
+    flex-wrap      : wrap;
+
+}
+
+.stories .current-story {
+    background             : #fff;
+    max-height: 750px;
+    margin                 : 10px;
+    width                  : 435px;
+    padding                : 30px;
+    line-height            : 25px;
+    color                  : #8e8b8b;
+    position: sticky;
+    border                 : 0.1px double rgba(234, 234, 238, 0.5);
+    border-top-right-radius: 2%;
+    border-top-left-radius : 2%;
+    transition             : ease-in-out 0.4s;
+    box-shadow             : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
+}
+
+.story-paragraph p{
+    height: 210px;
+}
+
+/* changing the color of the story content only  */
+.stories .current-story:hover {
+    background-color: rgb(14, 121, 124);
+    transition      : ease 0.5s;
+    box-shadow      : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
+    transform       : scale(1.1);
+    transition      : ease-in-out 0.4s;
+
+    z-index: 1;
+}
+
+
+
+/* Hover the entire story container and the image will scale  */
+.stories .current-story:hover .rescued-animal-img-wrapper img {
+    transform   : scale(1.3);
+    filter      : grayscale(1);
+    /* transform: scale(1.1); */
+}
+
+/* prevents the image from going outside the container  */
+.rescued-animal-img-wrapper {
+    overflow: hidden;
+
+}
+
+/* For smooth transition when scaling */
+.rescued-animal-img-wrapper img {
+    transition: transform .5s, filter 0.5s ease-in-out;
+    filter    : grayscale(0);
+}
+
+.stories .current-story h3 {
+    position  : relative;
+    color     : #089abe;
+    font-size : 26px;
+    margin-top: 50px;
+}
+
+.by-story-article-owner {
+    font-size  : 13px;
+    font-weight: bold;
+    color      : rgb(196, 194, 194);
+}
+
+.stories .current-story p.story-article-owner {
+    color         : rgb(196, 194, 194);
+    margin        : 12px 10;
+    font-size     : 12px;
+    text-transform: uppercase;
+    font-weight   : bold;
+    font-size     : 13px;
+}
+
+/* current story - image container  */
+.stories .current-story .rescued-animal-img-wrapper {
+    position     : absolute;
+    top          : -75px;
+    left         : 50%;
+    transform    : translateX(-50%);
+    width        : 200px;
+    height       : 140px;
+    border-radius: 50%;
+
+}
+
+/* image should be withing the container size  */
+.stories .current-story .rescued-animal-img-wrapper img {
+    width        : 200px;
+    height       : 140px;
+    border-radius: 50%;
+}
+
+.story-paragraph {
+    text-align    : left;
+    color         : #837979;
+   
+}
+
+.stories .current-story:hover .story-paragraph p {
+    color: rgb(202, 202, 209);
+}
+
+/* Prevents the text from going outside the box */
+.story-paragraph p {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.story-title {
+    height: 29px;
+}
+
+.story-title h3{
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

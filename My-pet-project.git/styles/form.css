@@ -1,0 +1,126 @@
+/* 
+*user-profile form  
+*/
+
+
+/* select {
+    padding: 9px;
+    width  : 400px;
+
+    box-sizing   : border-box;
+    border-color : #ecec60;
+    border-radius: 5px;
+    font-size    : 18px;
+    transition   : width 0.4s ease-in-out;
+
+    bottom: 110;
+    right : 110;
+} */
+
+.info-label {
+    display: -ms-flexbox;
+    display: inline-flex;
+    width  : fit-content;
+}
+
+.user-profile-wrapper {
+
+    position   : relative;
+    display    : inline-block;
+    color      : rgb(216, 212, 221);
+    margin-left: auto;
+
+    margin-right: auto;
+    margin-top  : 100px;
+    text-align  : center;
+
+    width        : fit-content;
+    min-height   : fit-content;
+    height       : fit-content;
+    max-width    : 550px;
+    border-radius: 16px;
+    padding      : 1px 25px 25px 24px;
+
+
+    background: -webkit-linear-gradient(bottom, #6e5518, #883022, rgb(68, 68, 90));
+}
+
+/* 
+*user-login + user-register form  
+*/
+.user-login-wrapper,
+.user-register-wrapper {
+    position: relative;
+    top     : 80px;
+    color   : rgb(216, 212, 221);
+    margin  : auto;
+
+    width        : 520px;
+    height       : 555px;
+    border-radius: 7px;
+    padding      : 20px 22px 20px 22px;
+    min-height   : fit-content;
+
+    background: -webkit-linear-gradient(bottom, #6e5518, #883022, rgb(68, 68, 90));
+}
+
+.user-login-wrapper{
+    height       : 565px;
+}
+/* @media only screen and (min-width: 7280px) {
+    .row-form {
+        position: relative;
+        float   : center;
+        top     : 220%;
+    }
+} */
+
+.login-form-title,
+.register-form-title {
+    display       : block;
+    font-family   : Poppins-Medium;
+    font-size     : 31px;
+    text-shadow   : 1.1px 1px 1px rgb(243, 0, 0);
+    color         : rgb(28, 197, 5);
+    line-height   : 2.2;
+    text-align    : center;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+}
+
+
+.icon {
+    padding   : 11px;
+    background: rgb(168, 162, 72);
+    color     : rgb(250, 250, 250);
+    min-width : 15px;
+    width     : 35px;
+    text-align: center;
+}
+
+.login-img {
+    border       : 2px solid rgb(69, 69, 77);
+    border-radius: 50%;
+    margin-top   : 10px;
+    margin-bottom: 1px;
+    height       : 120px;
+    width        : 120px;
+    background   : rgb(70, 71, 71);
+}
+
+/* 
+*user-register form  
+*/
+.register-field-redirect {
+    position  : relative;
+    margin-top: 60px;
+}
+
+/* 
+* login + register positioning 
+*/
+.log-nav {
+    position    : relative;
+    top         : 4px;
+    margin-right: 20px;
+}

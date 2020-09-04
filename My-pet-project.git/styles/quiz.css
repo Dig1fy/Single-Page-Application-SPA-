@@ -1,0 +1,277 @@
+/* .label-quiz{
+font-size: 20px;
+color: rgb(147, 35, 153);
+text-shadow: 1.1px 1px 1px rgb(4, 10, 82);
+}
+
+.line-quiz-wrapper {
+    text-align: left;
+    padding-left: 220px;
+   
+}
+
+.quiz-fieldset{
+   background-color: rgb(230, 227, 227) ;
+   opacity: 0.9;
+}
+
+.quiz-title {
+    font-size  : 23px;
+    color      : rgb(238, 167, 24);
+    text-shadow: 1.1px 1px 1px rgb(4, 10, 82);
+}
+
+.quiz-question {
+    font-size  : 25px;
+    color      : rgb(24, 134, 92);
+    text-shadow: 1.1px 1px 1px rgb(6, 8, 34);
+    text-align: left;
+    padding-left: 220px;
+}
+.hidden {
+    display: block;
+  } */
+
+body {
+    font-size  : 20px;
+    font-family: monospace;
+}
+
+#container {
+    margin          : 10px auto;
+    background-color: white;
+    height          : 600px;
+    width           : 900px;
+    border-radius   : 5px;
+    box-shadow      : 10px 15px 15px 0px;
+    position        : relative;
+    opacity         : 0.96;
+}
+
+
+#qImg {
+    /* width   : 250px;
+    height  : 55px; */
+    position      : absolute;
+    left          : 0px;
+    /* bottom     : 500px; */
+    /* padding-top: 20px; */
+}
+
+#qImg img {
+    padding-top              : 0px;
+    width                    : 320px;
+    height                   : 350px;
+    /* border-top-left-radius: 55px; */
+}
+
+#question {
+    position     : relative;
+    width        : fit-content;
+    padding-left : 100px;
+    padding-right: 100px;
+    margin       : auto;
+    top          : 0;
+
+    font-size  : 25px;
+    color      : rgb(24, 134, 92);
+    text-shadow: 1.1px 2px 3px rgb(8, 12, 71);
+
+}
+
+/* the current quizz question */
+#question p {
+    position : relative;
+    top      : -30px;
+    margin   : 0;
+    padding  : 15px;
+    font-size: 1.35em;
+}
+
+#timer {
+    position  : absolute;
+    height    : 100px;
+    width     : 200px;
+    bottom    : 0px;
+    text-align: center;
+}
+
+#counter {
+    font-size: 3em;
+}
+
+
+
+#progress {
+    width     : 500px;
+    position  : absolute;
+    bottom    : 0px;
+    right     : 0px;
+    padding   : 5px;
+    text-align: right;
+}
+
+.prog {
+    width        : 30px;
+    height       : 30px;
+    border       : 1px solid #000;
+    display      : inline-block;
+    border-radius: 50%;
+    margin-left  : 15px;
+    margin-right : 15px;
+}
+
+/* .prog-current {
+    width        : 30px;
+    height       : 30px;
+    border       : 1px solid rgb(30, 122, 35);
+    display      : inline-block;
+    border-radius: 50%;
+    margin-left  : 15px;
+    margin-right : 15px;
+} */
+
+.choices-letter {
+    font-size    : 23px;
+    color        : rgb(110, 97, 97);
+    text-shadow  : 1.1px 2px 2px rgb(4, 44, 17);
+    display      : inline-block;
+    width        : 500px;
+    text-align   : left;
+    border       : 1px solid rgb(255, 254, 254);
+    border-radius: 25px;
+    cursor       : pointer;
+    padding      : 15px;
+    padding-right: 0px;
+}
+
+.choices-letter:hover {
+    cursor          : pointer;
+    background-color: #e3f1f8;
+    font-weight     : bold;
+}
+
+#choice-container {
+    width   : 480px;
+    position: absolute;
+    right   : 25px;
+    top     : 125px;
+    padding : 0px
+}
+
+.choices {
+    color      : rgb(196, 180, 157);
+    text-shadow: 1.1px 2px 2px rgb(4, 44, 17);
+    padding    : 0px;
+    font-size  : 23px;
+    cursor     : pointer;
+
+}
+
+.choices:hover {
+    font-weight: bold;
+}
+
+.end-quiz {
+    text-align : center;
+    font-size  : 40px;
+    text-shadow: 1.1px 2px 2px rgb(79, 97, 84);
+}
+
+.quiz-intro {
+    font-size  : 35px;
+    color      : rgb(238, 167, 24);
+    text-shadow: 1.1px 1px 1px rgb(4, 10, 82);
+}
+
+#countdowntimer {
+    font-size: 50px;
+
+}
+
+.start-quiz {
+    text-decoration: rgb(243, 241, 245);
+    text-align     : center;
+    padding-top    : 50px;
+    font-size      : 30px;
+    color          : rgb(150, 103, 10);
+    text-shadow    : 1.1px 1px 1px rgb(4, 10, 82);
+}
+
+/* the div holding the exit button */
+.exit-quiz-wrapper {
+    position        : relative;
+    background-color: rgb(240, 237, 237);
+    font-size       : 1px;
+    width           : 33px;
+    left            : 860px;
+    border          : 0px solid rgb(217, 218, 216);
+}
+
+.exit-quiz-wrapper:hover {
+    background-color: rgb(61, 60, 60);
+    cursor          : pointer;
+}
+
+/* the quiz exit button */
+.exit-quiz-btn {
+    color      : rgb(80, 68, 68);
+    font-weight: bold;
+}
+
+.exit-quiz-btn:hover {
+    color      : rgb(0, 255, 13);
+    font-weight: bold;
+}
+
+/* the div holding the backward btn */
+.backward-btn-wrapper {
+    position: absolute;
+    width   : 30px;
+    bottom  : 80px;
+    left    : 400px;
+    margin  : auto;
+}
+
+/* quizz backward btn */
+#quiz-backward-btn {
+    font-size    : 23px;
+    width        : 22;
+    border-radius: 4px;
+    font-weight  : bold;
+    color        : rgb(100, 76, 44);
+    text-shadow  : 1.1px 2px 2px rgb(107, 117, 228);
+}
+
+#quiz-backward-btn:hover {
+    cursor: pointer;
+    color : rgb(51, 40, 26);
+}
+
+/* progress loader  */
+.progress-load-wrapper {
+    padding           : 4px;
+    background        : rgba(236, 225, 225, 0.25);
+    border-radius     : 6px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(104, 23, 170, 0.25), 0 1px rgba(202, 30, 30, 0.08);
+    box-shadow        : inset 0 1px 2px rgba(104, 76, 76, 0.25), 0 1px rgba(173, 184, 23, 0.08);
+    margin            : 0 auto;
+    width             : 600px;
+}
+
+.progress-load {
+    width        : 0%;
+    max-width: 593px;
+    height       : 56px;
+    border-radius: 5px;
+    transition   : 1s linear;
+    background   : -webkit-linear-gradient(right, #07f31a, #f7f200);
+}
+
+
+
+
+/* /////////////////// */
+
+
+

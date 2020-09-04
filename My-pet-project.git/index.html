@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Rescue me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css" /> -->
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/home.css" />
+  <link rel="stylesheet" href="./styles/dashboard.css" />
+  <link rel="stylesheet" href="./styles/ideas.css" />
+  <link rel="stylesheet" href="./styles/buttons.css" />
+  <link rel="stylesheet" href="./styles/form.css" />
+  <link rel="stylesheet" href="./styles/quiz.css" />
+
+  <!-- adding toastr for notifications -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+  <!-- Adding icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <div id="notification">
+    <span id="notification-message" onclick="this.parentElement.style.display=none"></span>
+  </div>
+  <div id="root"></div>
+
+  <script src="./node_modules/jquery/dist/jquery.js"></script>
+  <script src="./node_modules/handlebars/dist/handlebars.js"></script>
+  <script src="./node_modules/sammy/lib/sammy.js"></script>
+  <script src="./node_modules/sammy/lib/plugins/sammy.handlebars.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+  <script src="./fb-config/config.js"></script>
+  <!-- adding toastr js for notifications -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+  <script type="module" src='./scripts/app.js'></script>
+</body>
+
+</html>

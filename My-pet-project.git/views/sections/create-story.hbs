@@ -1,0 +1,21 @@
+{{> header}}
+
+<form class="create-story" action="#/sections/stories/create" method="POST">
+    <div class="">
+      <h1 class="">Wish for a new adventure!</h1>
+      <p>Fill up the following information!</p>
+    </div>
+
+    <div class="form-label-group">
+      <textarea type="text"  name="description" class="form-control" placeholder="Description" required=""></textarea>
+      <label for="inputTrekDescription">Description</label>
+    </div>
+{{!-- TODO make input image and implement the logic for the fb storage --}}
+    <div class="form-label-group">
+        <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
+      <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;">
+    </div>
+
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Make a wish =)</button>
+  </form>
+  {{> footer}}

@@ -1,0 +1,270 @@
+/* html { */
+/* background-image   : url("../images/bedr.png"); */
+/* background-position: center; */
+/* background-size    : cover; */
+/* background-repeat  : no-repeat; */
+/* } */
+
+* {
+  margin    : 0px;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height     : 100%;
+  width      : 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align : center;
+}
+
+body {
+  height        : fit-content;
+  min-height    : 20em;
+  min-width     : 20em;
+  letter-spacing: 0.11em;
+}
+
+/*
+ * nav bar 
+ */
+.header-main-wrapper,
+footer {
+  position        : relative;
+  /* position     : fixed; */
+  background-color: rgba(194, 223, 233, 0.3);
+  width           : 100%;
+  /* display      : inline-block; */
+  /* text-align   : center; */
+}
+
+.header-main-wrapper {
+  padding: 0.5em;
+}
+
+.nav-bar-log {
+  position       : relative;
+  display        : inline-flex;
+  padding-left   : 20px;
+  font-weight    : bold;;
+  /* margin-right: 120px; */
+}
+
+.log-nav{
+  font-size: 17px;
+  padding-bottom: 2px;
+}
+
+.nav-section-wrapper {
+  position     : relative;
+  text-align   : center;
+  width        : 60%;
+  height       : 25%;
+  display      : inline-flex;
+  padding-right: 3%;
+}
+
+.nav-section {
+  position: static;
+
+  color          : rgb(7, 83, 83);
+  text-decoration: none;
+  font-weight    : bold;
+  padding        : 4px;
+  padding-right  : 10px;
+  text-align     : left;
+  font-size      : 14px;
+  text-shadow    : 1.1px 2px 2px rgb(176, 176, 224);
+}
+
+.nav-section:hover {
+  color                   : #ecec60;
+  text-decoration         : underline;
+  /* text-decoration-style: wavy; */
+  text-shadow             : 1.1px 2px 2px rgb(155, 168, 98);
+}
+
+/*
+ * dropdown (Options)  button  
+ */
+.header-dropbtn {
+  font-size       : 10px;
+  border-radius   : 7%;
+  color           : #08130a;
+  background-color: rgb(189, 186, 179);
+}
+
+.home-img {
+  position             : relative;
+  display              : inline-flex;
+  left                 : 25%;
+  opacity              : 0.7;
+  border-radius        : 30%;
+  /* margin-top        : 0px;
+  margin-bottom        : 0px; */
+  height               : 40px;
+  width                : 40px;
+  color                : #000000;
+  /* text-decoration   : none; */
+}
+
+footer {
+  padding : 0.5em;
+  width   : 100%;
+  position: fixed;
+  left    : 0;
+  bottom  : 0;
+}
+
+/* .home-img-wrapper {
+  color: rgb(40, 165, 15);
+  border: #2ad83e;
+  border-radius: 22px;
+}
+
+.home-img-wrapper:hover {
+  color: rgb(208, 230, 16);
+} */
+
+a {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size  : 17px;
+  line-height: 1.7;
+  color      : #202921;
+  margin     : auto;
+  transition : all 0.5s;
+}
+
+/* HEADER nav buttons  */
+.nav-bar>a:hover {
+  cursor: pointer;
+  color : rgb(201, 245, 7);
+}
+
+.profile-img-header-wrapper {
+  padding-bottom: 1px;
+  padding-right : 7px;
+  padding-top   : 0px;
+
+}
+
+.profile-image-header {
+  border-radius   : 50%;
+  margin-top      : 0px;
+  margin-bottom   : 0px;
+  height          : 35px;
+  width           : 45px;
+  background-color: #c0e281;
+}
+
+.input-field {
+  padding: 9px;
+  width  : 400px;
+
+  box-sizing   : border-box;
+  border-color : #ecec60;
+  border-radius: 5px;
+  font-size    : 18px;
+  transition   : width 0.4s ease-in-out;
+
+  bottom: 110;
+  right : 110;
+
+}
+
+.input-field:focus {
+  border: 2.0px double rgb(11, 206, 86);
+  width : 430px;
+}
+
+.input-container {
+  display      : -ms-flexbox;
+  display      : inline-flex;
+  width        : fit-content;
+  margin-bottom: 15px;
+}
+
+.info-label {
+  color      : antiquewhite;
+  text-shadow: black;
+  font-size  : 18px;
+  text-shadow: 1.1px 2px 2px rgb(8, 109, 42);
+  padding    : 0px;
+}
+
+#notification {
+  display        : flex;
+  justify-content: center;
+  align-items    : center;
+
+}
+
+#notification-message {
+
+  display      : none;
+  background   : rgb(43, 104, 43);
+  color        : #ffffff;
+  text-shadow  : 1.1px 1px 1px rgb(95, 36, 36);
+  border-radius: 1px;
+  cursor       : pointer;
+  opacity      : 0.9;
+  width        : 100%;
+  position     : absolute;
+  border       : #000000;
+
+
+  margin-top : 83px;
+  font-size  : 17px;
+  height     : 70px;
+  padding-top: 20px;
+}
+
+/* 
+*dropdown menu from header 
+*/
+.dropdown-content {
+  display         : none;
+  position        : relative;
+  background-color: #f9f9f9;
+  min-width       : 146px;
+  box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index         : 1;
+}
+
+.dropdown-content a {
+  float           : none;
+  color           : black;
+  padding         : 10px 15px 10px 15px;
+  text-decoration : none;
+  transition      : 0.6s;
+  display         : block;
+  text-align      : left;
+  font-size       : 15px;
+  background-color: aliceblue;
+
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(214, 228, 240);
+  transition      : 0.1s;
+  border-radius   : 5%;
+  color           : #303129;
+  font-weight     : bold;
+}
+
+.dropdown-btn-wrapper:hover .dropdown-content {
+  position: absolute;
+  display : block;
+}
+
+.dropdown-btn-wrapper {
+  padding-bottom: 5px;
+  margin        : auto;
+  padding-left  : 10px;
+}
+
+#proff {
+  width        : 160px;
+  height       : 145px;
+  border-radius: 50%;
+}

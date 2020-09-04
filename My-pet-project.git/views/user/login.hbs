@@ -1,0 +1,27 @@
+{{> header}}
+
+<div class="user-login-wrapper">
+  <form class="user-login-form" name='log-form' action="#/user/login" method="POST">
+    <img class="login-img" src="../../images/av.png" alt="">
+    <span class="login-form-title">
+      Log in
+    </span>
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" id="email" name="email" placeholder="User@email.com">
+    </p>
+    <p class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" id="login-pass" name="password" placeholder="Password">
+    </p>
+    <p class="submit-btn-wrapper">
+      <button class="submit-btn" type="submit">SIGN IN</button>
+    </p>
+    <p class="field-redirect">
+      <span>Don't have account yet? Then just sign up <a href="#/user/register">here</a></span>
+    </p>
+
+  </form>
+</div>
+
+{{> footer}}

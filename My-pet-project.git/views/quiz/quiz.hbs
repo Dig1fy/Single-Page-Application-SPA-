@@ -1,0 +1,50 @@
+<body>
+
+    <div id="container">
+        <div class="exit-quiz-wrapper">
+            <a class="exit-quiz-btn">X</a>
+        </div>
+        <p class='quiz-intro'>Lets see what kind of computer scientist are you?</p>
+        <p class="start-quiz"> The quiz will begin in <br><br><span id="countdowntimer">5 </span></p>
+
+        {{!-- time loader --}}
+        <div class="progress-load-wrapper">
+            <div class="progress-load"></div>
+        </div>
+
+        <div id="quiz" style="display: none">
+            <div id="question"></div>
+            <div id="qImg"></div>
+            <div id="choice-container">
+
+                <strong class="choices-letter">a)<label class="choices" id="A"></strong></label>
+                <br>
+                <strong class="choices-letter">b)<label class="choices" id="B"></strong></label>
+                <br>
+                <strong class="choices-letter">c)<label class="choices" id="C"></strong></label>
+                <br>
+                <strong class="choices-letter">d)<label class="choices" id="D"></strong></label>
+                <br>
+            </div>
+
+            <div id="timer">
+                <div id="counter"></div>
+            </div>
+            <div id="progress"></div>
+
+        </div>
+        <div class="backward-btn-wrapper" style="display: none">
+            <a class="fa fa-backward" id="quiz-backward-btn"></a>
+        </div>
+    </div>
+
+    </form>
+
+    <script src="../../scripts/quiz.js"></script>
+</body>
+
+
+
+<footer class="footer">
+    <span>Your comfort is our main priority!</span>
+</footer>

@@ -1,0 +1,75 @@
+{{> header}}
+<div class="user-profile-wrapper">
+  <form class="user-profile-form" action="#/user/profile" method="POST">
+
+    <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
+    <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;">
+ 
+
+
+    {{!-- TODO make default image  --}}
+
+
+    <span class="login-form-title">
+      Profile info
+    </span>
+    <span class="z">
+      Update your profile so other people can contact you.
+    </span><br>
+    <label class='info-label'>Your username</label>
+    <p class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input class="input-field" type="username" id="username" name="username" placeholder="Unknown"
+        value="{{username}}">
+    </p>
+
+    <label class='info-label'>Your email adress</label>
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
+    </p>
+
+    <label class='info-label'>Your phonenumber</label>
+    <p class="input-container">
+      <i class="fa fa-mobile icon"></i>
+      <input class="input-field" type="phonenumber" id="phonenumber" name="phonenumber" placeholder="Unknown"
+        value="{{phonenumber}}">
+    </p>
+    <label class='info-label'>Your age</label>
+    <p class="input-container">
+      <i class="fa fa-mobile icon"></i>
+      <input class="input-field" type="age" id="age" name="age" placeholder="Unknown" value="{{age}}">
+    </p>
+
+    <p class="submit-btn-wrapper">
+      <button class="submit-btn" type="submit">Save changes</button>
+
+    </p>
+
+  </form>
+  <form action="#/user/profile/delete" method="POST">
+    <button class="submit-btn" type="submit">Delete profile</button>
+  </form>
+
+</div>
+
+<p class="quiz-popup">
+  <span>Take our survey and becove vip user <a href="#/quiz">here</a></span>
+</p>
+
+<script>
+  function eventHandler(event) {
+    let inputImg = document.querySelector('#input-image');
+    let preview = document.querySelector('#proff');
+    let headerImg = document.querySelector('.profile-image-header')
+
+    if (inputImg.files.length > 0) {
+      let newPictureSrc = URL.createObjectURL(inputImg.files[0]);
+      preview.src = newPictureSrc;
+
+    } else {
+      preview.src = '../images/profile-picture.png';
+    }
+  }
+</script>
+{{> footer}}
