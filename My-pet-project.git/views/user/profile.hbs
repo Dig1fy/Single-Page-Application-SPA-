@@ -3,12 +3,8 @@
   <form class="user-profile-form" action="#/user/profile" method="POST">
 
     <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
-    <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;">
- 
-
-
+    <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;"> 
     {{!-- TODO make default image  --}}
-
 
     <span class="login-form-title">
       Profile info
@@ -37,7 +33,7 @@
     </p>
     <label class='info-label'>Your age</label>
     <p class="input-container">
-      <i class="fa fa-mobile icon"></i>
+      <i class="fas fa-info icon"></i>
       <input class="input-field" type="age" id="age" name="age" placeholder="Unknown" value="{{age}}">
     </p>
 

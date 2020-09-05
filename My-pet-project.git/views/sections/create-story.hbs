@@ -1,21 +1,51 @@
 {{> header}}
 
-<form class="create-story" action="#/sections/stories/create" method="POST">
+<div class="create-story-wrapper">
+  <form class="create-xxx" action="#/sections/stories/create" method="POST">
     <div class="">
-      <h1 class="">Wish for a new adventure!</h1>
+      <h1 class="">Share your memory!</h1>
       <p>Fill up the following information!</p>
     </div>
 
-    <div class="form-label-group">
-      <textarea type="text"  name="description" class="form-control" placeholder="Description" required=""></textarea>
-      <label for="inputTrekDescription">Description</label>
-    </div>
-{{!-- TODO make input image and implement the logic for the fb storage --}}
-    <div class="form-label-group">
-        <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
-      <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;">
+    <label class='new-story-title'>Title</label>
+    <p class="input-container">
+      <i class="fa fa-info icon"></i>
+      <input class=".story-input-field" type="title" id="title" name="title" placeholder="Unknown">
+    </p>
+
+    <div class="new-story-description">
+      <label for="xx">Description</label>
+      <textarea type="text" name="description" class="story-description" placeholder="Tell us what's happened"
+        required=""></textarea>
     </div>
 
-    <button class="btn btn-lg btn-dark btn-block" type="submit">Make a wish =)</button>
+{{!-- example --}}
+    <label class='info-label'>Your email adress</label>
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
+    </p>
+{{!-- example --}}
+    {{!-- TODO make input image and implement the logic for the fb storage --}}
+
+    <label class='new-story-email'>Your email adress</label>
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class=".story-input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
+    </p>
+
+    <label class='new-story-phonenumber'>Your phonenumber</label>
+    <p class="input-container">
+      <i class="fa fa-mobile icon"></i>
+      <input class=".story-input-field" type="phonenumber" id="phonenumber" name="phonenumber" placeholder="Unknown"
+        value="{{phonenumber}}">
+
+    <div class="new-story-photos">
+      <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
+      <input type="file" name="inpFile" id="input-image" style="display: none;">
+    </div>
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Publish your story</button>
   </form>
-  {{> footer}}
+</div>
+
+{{> footer}}

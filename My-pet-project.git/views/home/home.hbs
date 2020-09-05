@@ -7,7 +7,47 @@
       <h2 class="featurette-heading">Be part of a <span class="text-highlighted">better world</span>!</h2>
     </div>
 
+{{!-- // --}}
 
+<form class="create-story" action="#/sections/stories/create" method="POST">
+  <div class="">
+    <h1 class="">Share your memory!</h1>
+    <p>Fill up the following information!</p>
+  </div>
+
+  <div class="new-story-title">
+    <label for="story-title">Title</label>
+    <input type="text" id="story-title" name="title" class="story-title" placeholder="What is your idea?" required=""
+      autofocus="">
+  </div>
+
+  <div class="form-label-group">
+    <textarea type="text" name="description" class="form-control" placeholder="Description" required=""></textarea>
+    <label for="inputTrekDescription">Description</label>
+  </div>
+
+  {{!-- TODO make input image and implement the logic for the fb storage --}}
+  <div class="form-label-group">
+    <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
+    <input type="file" onchange="eventHandler(event)" name="inpFile" id="input-image" style="display: none;">
+  </div>
+
+  <label class='info-label'>Your email adress</label>
+    <p class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
+    </p>
+
+    <label class='info-label'>Your phonenumber</label>
+    <p class="input-container">
+      <i class="fa fa-mobile icon"></i>
+      <input class="input-field" type="phonenumber" id="phonenumber" name="phonenumber" placeholder="Unknown"
+        value="{{phonenumber}}">
+  
+  
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Publish your story</button>
+</form>
+{{!-- // --}}
 
 
 

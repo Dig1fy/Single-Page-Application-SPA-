@@ -1,0 +1,65 @@
+.create-story-wrapper{
+    /* position   : relative;
+    display    : inline-block; */
+    color      : rgb(216, 212, 221);
+    margin-left: auto;
+
+    margin-right: auto;
+    margin-top  : 20px;
+    text-align  : center;
+
+    width        : fit-content;
+    /* min-height   : fit-content; */
+    height       : fit-content;
+    max-width    : 850px;
+    border-radius: 16px;
+    padding      : 5px 35px 5px 35px;
+    opacity: 1;
+
+
+    background: -webkit-linear-gradient(bottom, #6e5518, #883022, rgb(68, 68, 90));
+}
+
+.new-story-title, .new-story-description, .new-story-email, .new-story-phonenumber, .new-story-photos {
+    display: grid;
+    font-family   : Poppins-Medium;
+    font-size     : 20px;
+    text-shadow   : 1.1px 1px 1px rgb(243, 0, 0);
+    color         : rgb(28, 197, 5);
+    line-height   : 1.2;
+    text-align    : center;
+    text-transform: uppercase;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.story-description{
+    height: 200px;
+    width: 700px;
+}
+.new-story-description{
+    text-align: center;
+}
+#story-title{
+    width: 430px;
+    height: 37px;
+}
+
+.story-input-field{
+    padding: 9px;
+  width  : 400px;
+
+  box-sizing   : border-box;
+  border-color : #ecec60;
+  border-radius: 5px;
+  font-size    : 18px;
+  transition   : width 0.4s ease-in-out;
+
+  /* bottom: 110;
+  right : 110; */
+}
+
+.story-input-field:focus {
+    border: 2.0px double rgb(11, 206, 86);
+    width : 430px;
+  }
