@@ -26,6 +26,7 @@ import controllers from '../controllers/index.js'
         //Story
         this.get('#/sections/stories', controllers.stories.get.dashboard)
         this.get('#/sections/stories/create', controllers.stories.get.create)
+        
         // this.get('#/cause/create', controllers.cause.get.create)
         // //causeId го закачаме тук, директно към всяко кликване към details.
         // this.get('#/cause/details/:causeId', controllers.cause.get.details)

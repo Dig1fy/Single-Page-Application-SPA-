@@ -1,9 +1,9 @@
 {{> header}}
 
 <div class="story-background-image">
- 
- {{!-- <div class="create-story-wrapper"> --}}
-<div class="story-wrapper">
+
+  {{!-- <div class="create-story-wrapper"> --}}
+  <div class="story-wrapper">
     <form class="create-xxx" action="#/sections/stories/create" method="POST">
       <div class="">
         <h1 class="">Share your memory!</h1>
@@ -35,9 +35,15 @@
           value="{{phonenumber}}">
 
       <div class="new-story-photos">
-        <label for="input-image"><img class="profile-imgs" id="proff" src={{photoURL}} /></label>
-        <input type="file" name="inpFile" id="input-image" style="display: none;">
+        <div class="uploaded-img-wrapper">
+          <input id="upload-story-images" type="file" multiple="multiple"/>
+          <label class="label-upload-img" for="upload-story-images"><img src="../../images/new-story-img/upload.png" class="upload-pic"> Upload pictures to your story</label>
+          
+          <div id="preview-story-images">
+          </div>
+        </div>
       </div>
+
       <button class="btn btn-lg btn-dark btn-block" type="submit">Publish your story</button>
     </form>
   </div>

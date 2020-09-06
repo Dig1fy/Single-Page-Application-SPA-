@@ -57,6 +57,7 @@
     font-family: Poppins-Medium;
     font-size  : 20px;
     color      : rgb(6, 0, 22);
+    border     : 2.0px double rgb(211, 207, 3);
     height     : 200px;
     width      : 425px;
     text-align : left;
@@ -64,7 +65,7 @@
 
 .new-story-description {
     margin-top: -22px;
-    padding        : 1%;
+    padding   : 1%;
 }
 
 #story-title {
@@ -73,8 +74,8 @@
 }
 
 .story-input-field {
-    width: 425px;
-    height: 35px;
+    width        : 425px;
+    height       : 35px;
     box-sizing   : border-box;
     border-color : #f0f002;
     border-radius: 5px;
@@ -90,3 +91,49 @@
     border: 2.0px double rgb(11, 206, 86);
     width : 460px;
 }
+
+/* preview on story pictures */
+
+.story-image {
+    height : 150px;
+    width  : 150px;
+    padding: 2px;
+}
+
+/* Makes the default "Choose file" look better :) */
+.new-story-photos {
+    padding-bottom : 35px;
+    display        : -webkit-box;
+    display        : -webkit-flex;
+    display        : -moz-box;
+    display        : -ms-flexbox;
+    justify-content: center;
+
+}
+
+#upload-story-images {
+    opacity : 0;
+    z-index : -1;
+    position: absolute;
+    /* height: 140px;
+    width: 420px; */
+}
+
+
+.label-upload-img {
+    text-transform: initial;
+    font-size     : 20px;
+}
+
+.upload-pic {
+    height : 12px;
+    width  : 20px;
+    display: inline-flex;
+}
+ 
+.label-upload-img:hover{
+    border          : 2.0px double rgb(198, 241, 5);
+    cursor          : pointer;
+    background-color: rgb(228, 223, 195);
+    color           : rgb(170, 110, 19);
+} 
