@@ -11,7 +11,7 @@ export default {
                 this.partial('../views/sections/stories.hbs');
             })
         },
-        create(context) {
+        create(context) {            
             checkForUser(context) 
             displayUserName(context);
             extend(context).then(function () {
