@@ -134,6 +134,6 @@
 .label-upload-img:hover{
     border          : 2.0px double rgb(198, 241, 5);
     cursor          : pointer;
-    background-color: rgb(228, 223, 195);
-    color           : rgb(170, 110, 19);
+    background-color: rgb(94, 80, 4);
+    color           : rgb(235, 231, 225);
 } 

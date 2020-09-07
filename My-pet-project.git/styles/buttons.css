@@ -15,7 +15,7 @@
 .submit-btn-wrapper {
     padding-top    : 55px;
     padding-bottom : 35px;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     display        : -webkit-box;
     display        : -webkit-flex;
     display        : -moz-box;
