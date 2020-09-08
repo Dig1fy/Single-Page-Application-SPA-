@@ -1,10 +1,30 @@
 {{> header}}
 
 <div class="stories-section-wrapper">
-  {{!-- <a href="#/sections/stories/create">Tell us your story</a>
-  <a href="">our most liked stories</a> --}}
+  {{#each stories}}
+  <div style="margin-bottom:25%;" class="row">
+    <div class="col-lg-12">
+      <div class="card mt-4">
+        {{#each images}}
+        <img style="max-width: 1200px; height: auto; border-radius:25px;" class="card-img-top img-fluid"
+          src="{{src}}" alt="">
+        {{else}}
+        <h1 class="text-center">NO STORY PICTURES</h1>
+        {{/each}}
+        <div class="card-body">
+          <h3 class="card-title">{{title}}</h3>
+          <p class="card-text">{{description}}</p>
+          <a href="#/cause/details/{{idFromFirestormDataBase}}" class="btn btn-success">Become a donor $$$</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+
+  {{else}}
+  <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
+  {{/each}}
 
 
 
