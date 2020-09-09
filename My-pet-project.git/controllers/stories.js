@@ -15,26 +15,9 @@ export default {
 
                 //Така се закача id към response...баси
                 const allStories = response.docs.map(idGenerator)
-                
-                for (let i = 0; i < allStories.length; i++) {
-                    
-                    let imgs = allStories[i].images
-
-                    for (let z = 0; z < imgs.length; z++) {
-                        
-                        console.log(imgs[z].src);
-                    }
-                }
-
-
-              
-
-
+                                
                 context.stories = allStories;
                 console.log(context);
-
-
-
                 extend(context).then(function () {
                     this.partial('../views/sections/stories.hbs')
                 })

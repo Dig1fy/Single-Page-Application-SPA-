@@ -1,37 +1,44 @@
 {{> header}}
 
+{{!-- comments: []
+email: "q2kforeveralon3@gmail.com"
+idFromFirebase: "1jNY1AmkgyX4Do4vwOWN"
+images: []
+likes: 0
+phonenumber: "0988946552"
+uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
+
+
+<a href="#/sections/stories/create" class="submit-btn" type="submit">Share your story</a>
 <div class="stories-section-wrapper">
-  {{#each stories}}
-  <div style="margin-bottom:25%;" class="row">
-    <div class="col-lg-12">
-      <div class="card mt-4">
-        {{#each images}}
-        <img style="max-width: 1200px; height: auto; border-radius:25px;" class="card-img-top img-fluid"
-          src="{{src}}" alt="">
-        {{else}}
-        <h1 class="text-center">NO STORY PICTURES</h1>
-        {{/each}}
-        <div class="card-body">
-          <h3 class="card-title">{{title}}</h3>
-          <p class="card-text">{{description}}</p>
-          <a href="#/cause/details/{{idFromFirestormDataBase}}" class="btn btn-success">Become a donor $$$</a>
-        </div>
+  <div class="stories">
+
+    {{#each stories}}
+
+
+    <div class="current-story">
+      {{#each images}}
+      <div class="rescued-animal-img-wrapper">
+        <img class="story-image-render" src="{{src}}" alt="">
+      </div>
+      {{else}}
+      <h5 class="text-center">NO STORY PICTURES</h5>
+      {{/each}}
+      <div class="story-title">
+        <h3>{{title}}</h3>
+      </div>
+      <p class="by-story-article-owner">by</p>
+      <p class="story-article-owner">{{authorName}}</p>
+      <div class="story-paragraph">
+        <p>{{description}}</p>
+        <a href="#/cause/details/{{idFromFirestormDataBase}}" class="btn btn-success">See the entire story</a>
       </div>
     </div>
+    {{else}}
+    <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
+    {{/each}}
+
   </div>
 
 
-
-  {{else}}
-  <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
-  {{/each}}
-
-
-
-  <a href="#/sections/stories/create" class="submit-btn" type="submit">Share your story</a>
-
-
-</div>
-
-
-{{> footer}}
+  {{> footer}}

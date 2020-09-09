@@ -232,3 +232,9 @@
     text-overflow: ellipsis;
 }
 
+
+.story-image-render{
+    height: 150px;
+    width: 150px;
+    box-sizing: border-box;
+}
