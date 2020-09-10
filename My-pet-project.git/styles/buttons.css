@@ -30,6 +30,17 @@
     color           : rgb(37, 70, 43);
 }
 
+.create-story-btn{
+    position: relative;
+    padding-top    : 255px;
+    padding-bottom : 35px;
+    background-color: aquamarine;
+    /* display        : -webkit-box;
+    display        : -webkit-flex;
+    display        : -moz-box;
+    display        : -ms-flexbox; */
+    justify-content: center;
+}
 
 
 
