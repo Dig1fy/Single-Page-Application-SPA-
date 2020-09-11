@@ -8,22 +8,22 @@ likes: 0
 phonenumber: "0988946552"
 uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
 
-
-<a href="#/sections/stories/create" class="create-story-btn" type="submit">Share your story</a>
+<div class="share-story-btn-wrapper">
+  <a href="#/sections/stories/create" class="create-story-btn" type="submit">Share your story</a>
+</div>
 <div class="stories-section-wrapper">
   <div class="stories">
 
     {{#each stories}}
 
-
     <div class="current-story-dashboard">
-      {{#each images}}
-      <div class="rescued-animal-img-wrapper">
+      <div class="display-pictures.dashboard">
+        {{#each images}}
         <img class="story-image-render" src="{{src}}" alt="">
+        {{else}}
+        <h5 class="text-center">NO STORY PICTURES</h5>
+        {{/each}}
       </div>
-      {{else}}
-      <h5 class="text-center">NO STORY PICTURES</h5>
-      {{/each}}
       <div class="story-title">
         <h3>{{title}}</h3>
       </div>
@@ -39,6 +39,7 @@ uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
     {{/each}}
 
   </div>
+</div>
 
 
-  {{> footer}}
+{{> footer}}
