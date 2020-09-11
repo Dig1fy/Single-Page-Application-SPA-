@@ -27,12 +27,10 @@ import controllers from '../controllers/index.js'
         this.get('#/sections/stories', controllers.stories.get.dashboard)
         this.get('#/sections/stories/create', controllers.stories.get.create)
         this.post('#/sections/stories/create', controllers.stories.post.create)
-        // this.get('#/cause/create', controllers.cause.get.create)
-        // //causeId го закачаме тук, директно към всяко кликване към details.
-        // this.get('#/cause/details/:causeId', controllers.cause.get.details)
-        // this.post('#/cause/create', controllers.cause.post.create)
-        // this.get('#/cause/close/:causeId', controllers.cause.del.close)
-        // this.post('#/cause/donate/:causeId', controllers.cause.put.donate)
+        //The storyId should be named the same way as in the handlebars template. Then in controllers, it comes as context param. 
+        this.get('#/story/details/:storyId', controllers.stories.get.details)
+
+        
 
     })
     

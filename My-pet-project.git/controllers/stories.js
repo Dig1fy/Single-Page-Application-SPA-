@@ -13,11 +13,10 @@ export default {
             models.story.getAll().then((response) => {
                 //Тази простотия идва от firebase документацията. Първоначално връща един смахнат обект с много пропъртита. Трябва да му дадем "docs", да минем през всеки запис и да му дадем ".data", което реално е нашият обект от firebase. (т.е. response.docs.foreach(x=>x.data))
 
-                //Така се закача id към response...баси
+                //This is where we attach id to to each story (the id itself comes from Firebase)
                 const allStories = response.docs.map(idGenerator)
-                                
+
                 context.stories = allStories;
-                console.log(context);
                 extend(context).then(function () {
                     this.partial('../views/sections/stories.hbs')
                 })
@@ -31,6 +30,32 @@ export default {
                 this.partial('../views/sections/create-story.hbs')
                     .then(listenForUploadedPictures)
             })
+        },
+
+        details(context) {
+            checkForUser(context)
+            displayUserName(context);
+            const { storyId } = context.params;
+
+
+
+            models.story.get(storyId)
+                .then(response => {
+                    //Attach the id to the story and returns the entire entity with all story details. 
+                    const story = idGenerator(response);
+
+                    //To make it easier when using the templates (hbs), we attach the story details to the context. So when we use the templates, we access each element directly (instead of context.description, context.username, context.email etc., we go for description, username, email)
+                    Object.keys(story).forEach(key => {
+                        context[key] = story[key]
+                    })
+
+                    //We check if the current user is the author of the story.
+                    context.isAuthor = story.uid === localStorage.getItem('userId');
+
+                    extend(context).then(function () {
+                        this.partial('../views/sections/details.hbs')
+                    })
+                })
         }
     },
     post: {
@@ -45,7 +70,7 @@ export default {
             const data = {
                 ...context.params,
                 uid: context.userId,
-                authorName: user.displayName === null ? "Too shy to share that" : user.displayName,
+                authorName: user.displayName === null ? "Anonymous" : user.displayName,
                 likes: 0,
                 comments: [],
                 images: []

@@ -5,9 +5,9 @@ export default {
     getAll(){
         return firebase.firestore().collection('stories').get();
     },
-    // get(id) {
-    //     return firebase.firestore().collection('treks').doc(id).get();
-    // },
+    get(id) {
+        return firebase.firestore().collection('stories').doc(id).get();
+    },
     // close(id){
     //     return firebase.firestore().collection('treks').doc(id).delete();
     // },

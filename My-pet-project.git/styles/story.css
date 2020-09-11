@@ -112,11 +112,11 @@
 }
 
 #upload-story-images {
-    opacity : 0;
-    z-index : -1;
-    position: absolute;
+    opacity  : 0;
+    z-index  : -1;
+    position : absolute;
     /* height: 140px;
-    width: 420px; */
+    width    : 420px; */
 }
 
 
@@ -130,11 +130,21 @@
     width  : 20px;
     display: inline-flex;
 }
- 
-.label-upload-img:hover{
+
+.label-upload-img:hover {
     border          : 2.0px double rgb(198, 241, 5);
     cursor          : pointer;
     background-color: rgb(94, 80, 4);
     color           : rgb(235, 231, 225);
-} 
+}
 
+.story-image-render:active {
+
+    /* 400% zoom on click, transforming from top to bottom */
+    transform           : scale(4);
+    transform-origin    : top;
+}
+
+.story-image-render:hover{
+    cursor: pointer;
+}
