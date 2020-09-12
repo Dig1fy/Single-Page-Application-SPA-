@@ -130,8 +130,6 @@
     box-shadow             : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
 }
 
-
-
 .story-paragraph p {
     height: 210px;
     color: black;
@@ -147,8 +145,6 @@
 
     z-index: 1;
 }
-
-
 
 /* Hover the entire story container and the image will scale  */
 .stories .current-story:hover .rescued-animal-img-wrapper img {
@@ -242,7 +238,6 @@
     text-overflow: ellipsis;
 }
 
-
 .story-image-render {
     height       : 150px;
     width        : 150px;
@@ -264,8 +259,6 @@
     transition             : ease-in-out 0.4s;
     box-shadow             : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
 }
-
-
 
 .current-story-dashboard:hover {
     color           : rgb(202, 202, 209);

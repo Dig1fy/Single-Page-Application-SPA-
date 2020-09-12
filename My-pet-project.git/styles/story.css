@@ -10,8 +10,6 @@
     background   : -webkit-linear-gradient(bottom, #6e5518, #883022, rgb(68, 68, 90));
 }
 
-
-
 .story-background-image {
     background-image      : url('../images/new-story-img/dog.png');
     min-height            : max-content;
@@ -118,7 +116,6 @@
     /* height: 140px;
     width    : 420px; */
 }
-
 
 .label-upload-img {
     text-transform: initial;

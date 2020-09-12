@@ -28,7 +28,6 @@ export default {
                     
                     context.stories = allStories.slice(0, 3);
 
-                    console.log(context);
                     extend(context).then(function () {
                         this.partial('../views/home/home.hbs');
                     })

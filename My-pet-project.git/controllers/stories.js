@@ -71,6 +71,7 @@ export default {
                 ...context.params,
                 uid: context.userId,
                 authorName: user.displayName === null ? "Anonymous" : user.displayName,
+                peopleWhoHaveLiked: [],
                 likes: 0,
                 comments: [],
                 images: []
@@ -84,6 +85,35 @@ export default {
                 })
                 .catch(e => alert(e.message));
 
+        },
+
+        update(context) {
+            //We attached the storyId in the template so we can retrieve it as context param
+            const { storyId } = context.params;
+
+            models.story.get(storyId)
+                .then(response => {
+                    const story = idGenerator(response) //понеже ни връща шантав обект (response), го минаваме през modifier, за да стане js
+
+                    //Check if the current user has already liked the story. If yes, he cannot like it again, otherwise, add him in the list of people who have liked the story and adjust the like's count
+                    let currentPersonId = firebase.auth().currentUser.uid;
+
+                    if (story.peopleWhoHaveLiked.some(x => x === currentPersonId)) {
+                        context.hasLiked = true;
+
+                    } else {
+                        story.peopleWhoHaveLiked.push(currentPersonId);
+                        story.likes += 1;
+
+                        
+                    }
+                    
+                    return models.story.edit(storyId, story);
+                })
+                //TODO - ADJUST THIS ... :()
+            //     .then(x => {
+            //         this.partial('../views/sections/details.hbs')
+            //     })
         }
     }
 
