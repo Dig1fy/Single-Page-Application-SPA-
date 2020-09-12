@@ -8,9 +8,40 @@
     </div>
 
     <div class="stories-section-wrapper">
-      <h1>.</h1>
+      <br><br><br><br>
+
       <div class="stories">
+        {{!-- asdasdsa --}}
+        {{#each stories}}
+
         <div class="current-story">
+          <div class="rescued-animal-img-wrapper">
+            {{#each images}}
+            <img class="story-image-render" src="{{src}}" alt="">
+            {{else}}
+            {{!-- <h5 class="text-center">NO STORY PICTURES</h5> --}}
+            <h5 class="no-story-img">No images</h5>
+            {{/each}}
+          </div>
+          <div class="story-title">
+            <h3>{{title}}</h3>
+          </div>
+          <p class="by-story-article-owner">by</p>
+          <p class="story-article-owner">{{authorName}}</p>
+          <div class="story-paragraph">
+            <p>{{description}}</p>
+            <a href="#/story/details/{{idFromFirebase}}" class="btn btn-success">See the entire story</a>
+          </div>
+        </div>
+        {{else}}
+        <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
+        {{/each}}
+        {{!-- asdasd --}}
+
+
+
+
+        {{!-- <div class="current-story">
           <div class="rescued-animal-img-wrapper">
             <img src="../../images/saved animals/1.png">
           </div>
@@ -58,21 +89,10 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere
               dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
           </div>
-        </div>
-
-
-        {{!-- <div class="current-story">
-          <div class="rescued-animal-img-wrapper">
-            <img src="../../images/saved animals/2.png">
-          </div>
-          <h3>Couldn't believe it...</h3>
-          <p class="by-story-article-owner">by</p>
-          <p class="story-article-owner">Ivan Petrov</p>
-          <div class="story-paragraph">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quaerat tempora, voluptatum quas facere
-              dolorum aut cumque nihil nulla harum nemo distinctio quam blanditiis dignissimos.</p>
-          </div>
         </div> --}}
+
+
+
       </div>
     </div>
 

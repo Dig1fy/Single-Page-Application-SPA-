@@ -1,7 +1,7 @@
 import extend from '../utils/context.js';
 import models from '../models/index.js';
 import checkForUser from '../utils/checkForUser.js';
-import idGenerator from '../utils/idGenerator.js'
+import idGenerator from '../utils/idGenerator.js';
 
 export default {
     get: {
@@ -130,7 +130,9 @@ function listenForUploadedPictures() {
         if (typeof (FileReader) !== "undefined") {
             const dvPreview = document.getElementById("preview-story-images");
             dvPreview.innerHTML = "";
-            const regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            const regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            //  /^([a-zA-Z0-9\s_\\.()\-:])+
+            //  (.jpg|.jpeg|.gif|.png|.bmp)$/;
 
             for (var i = 0; i < fileUpload.files.length; i++) {
                 let file = fileUpload.files[i];
