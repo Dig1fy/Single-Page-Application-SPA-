@@ -82,7 +82,9 @@ export default {
             models.story.create(data)
                 .then(response => {
                     checkForNewlyUplodadeImages(response, user, data)
-                    context.redirect('#/home');
+                    setTimeout(function () {
+                        context.redirect('#/sections/stories')
+                    }, 300)
                 })
                 .catch(e => alert(e.message));
 
