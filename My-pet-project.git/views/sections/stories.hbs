@@ -17,7 +17,9 @@ uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
     {{#each stories}}
 
     <div class="current-story-dashboard">
+      
       <div class="display-pictures.dashboard">
+        
         {{#each images}}
         <img class="story-image-render" src="{{src}}" alt="">
         {{else}}
@@ -31,9 +33,12 @@ uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
       <p class="story-article-owner">{{authorName}}</p>
       <div class="story-paragraph">
         <p>{{description}}</p>
-        <a href="#/story/details/{{idFromFirebase}}" class="open-the-whole-story-btn">See the whole story</a>
+      </div>
+      <div class="see-the-whole-story-wrapper">
+        <a href="#/story/details/{{idFromFirebase}}" class="see-the-whole-story">See the whole story</a>
       </div>
     </div>
+    
     {{else}}
     <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
     {{/each}}

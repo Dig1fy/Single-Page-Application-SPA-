@@ -62,7 +62,13 @@ export default {
         create(context) {
             checkForUser(context)
             const user = firebase.auth().currentUser;
+            let imagesRef = document.querySelector('#upload-story-images'), tempMainPic;
+            
 
+            if (imagesRef.files.length > 0) {
+                tempMainPic = imagesRef.files[0];
+                console.log(tempMainPic);
+            }
             /*
             * We create new story and save it in the firestore
             * context.params come from the handlebars template (create-story.hbs)
@@ -73,6 +79,7 @@ export default {
                 authorName: user.displayName === null ? "Anonymous" : user.displayName,
                 peopleWhoHaveLiked: [],
                 likes: 0,
+                mainPicture: {},
                 comments: [],
                 images: []
             }
@@ -84,7 +91,6 @@ export default {
                     context.redirect('#/home');
                 })
                 .catch(e => alert(e.message));
-
         },
 
         update(context) {
@@ -98,22 +104,19 @@ export default {
                     //Check if the current user has already liked the story. If yes, he cannot like it again, otherwise, add him in the list of people who have liked the story and adjust the like's count
                     let currentPersonId = firebase.auth().currentUser.uid;
 
+                    //If someone has already liked a story, we note that to the context and the take control over the rendering in the handlebar templates.
                     if (story.peopleWhoHaveLiked.some(x => x === currentPersonId)) {
                         context.hasLiked = true;
 
                     } else {
-                        story.peopleWhoHaveLiked.push(currentPersonId);
                         story.likes += 1;
+                        story.peopleWhoHaveLiked.push(currentPersonId)
 
-                        
+                        let likes = document.querySelector("#root > div > div > div > form > div > p");
+                        likes.textContent++;
+                        return models.story.edit(storyId, story);
                     }
-                    
-                    return models.story.edit(storyId, story);
                 })
-                //TODO - ADJUST THIS ... :()
-            //     .then(x => {
-            //         this.partial('../views/sections/details.hbs')
-            //     })
         }
     }
 
@@ -142,7 +145,6 @@ function uploadImage(imageFile, user, storyId, data) {
             models.story.edit(storyId, data)
         })
         .catch(b => console.log(b));
-
 }
 
 function displayUserName(context) {

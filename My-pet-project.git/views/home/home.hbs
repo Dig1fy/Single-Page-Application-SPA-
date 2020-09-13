@@ -16,12 +16,11 @@
 
         <div class="current-story">
           <div class="rescued-animal-img-wrapper">
-            {{#each images}}
-            <img class="story-image-render" src="{{src}}" alt="">
+            {{#if images}}
+            <img class="story-image-render" src="{{mainPicture.src}}" alt="">
             {{else}}
-            {{!-- <h5 class="text-center">NO STORY PICTURES</h5> --}}
             <h5 class="no-story-img">No images</h5>
-            {{/each}}
+            {{/if}}
           </div>
           <div class="story-title">
             <h3>{{title}}</h3>
@@ -29,9 +28,12 @@
           <p class="by-story-article-owner">by</p>
           <p class="story-article-owner">{{authorName}}</p>
           <div class="story-paragraph">
-            <p>{{description}}</p>
-            <a href="#/story/details/{{idFromFirebase}}" class="btn btn-success">See the entire story</a>
+            <p>{{description}}</p>            
           </div>
+
+          <div class="see-the-whole-story-wrapper">
+              <a href="#/story/details/{{idFromFirebase}}" class="see-the-whole-story">See the whole story</a>
+            </div>
         </div>
         {{else}}
         <h1 class="text-center">No stories yet. Be the first to post a story!</h1>

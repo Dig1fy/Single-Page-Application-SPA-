@@ -115,54 +115,60 @@
 
 /* .stories  */
 .current-story {
-    background             : #fff;
-    max-height             : 750px;
-    margin                 : 10px;
-    width                  : 435px;
-    padding                : 30px;
-    line-height            : 25px;
-    color                  : #8e8b8b;
-    position               : sticky;
-    border                 : 0.1px double rgba(234, 234, 238, 0.5);
-    border-top-right-radius: 2%;
-    border-top-left-radius : 2%;
-    transition             : ease-in-out 0.4s;
-    box-shadow             : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
+    background                : #fff;
+    max-height                : 750px;
+    margin                    : 10px;
+    width                     : 435px;
+    padding                   : 30px;
+    line-height               : 25px;
+    color                     : #8e8b8b;
+    position                  : sticky;
+    /* border                 : 0.1px double rgba(234, 234, 238, 0.5); */
+    border-top-right-radius   : 2%;
+    border-top-left-radius    : 2%;
+    transition                : ease-in-out 0.5s;
+    box-shadow                : inset 10px 55px 21px -5px rgba(130, 143, 125, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
 }
 
+/* Prevents the text from going outside the box */
 .story-paragraph p {
-    height: 210px;
-    color: black;
+    height          : 210px;
+    color           : black;
+    /* white-space  : pre-wrap;
+    overflow        : hidden;
+    text-overflow   : ellipsis; */
+    overflow        : hidden;
+}
+
+/* To make sure that longer titles/texts won't go outside the box  */
+p,
+h3,
+h2,
+h1,
+h4,
+h5,
+.story-title {
+    white-space  : pre-wrap;
+    overflow     : hidden;
+    text-overflow: ellipsis;
 }
 
 /* changing the color of the story content only  */
 .stories .current-story:hover {
-    background-color: rgb(14, 121, 124);
-    transition      : ease 0.5s;
-    box-shadow      : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
-    transform       : scale(1.1);
-    transition      : ease-in-out 0.4s;
+    background-color   : rgb(14, 121, 124);
+    /* transition      : ease 0.5s; */
+    box-shadow         : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
+    transform          : scale(1.1);
+    transition         : ease-in-out 0.5s;
 
     z-index: 1;
 }
 
-/* Hover the entire story container and the image will scale  */
-.stories .current-story:hover .rescued-animal-img-wrapper img {
-    transform   : scale(1.3);
-    filter      : grayscale(1);
-    /* transform: scale(1.1); */
-}
+
 
 /* prevents the image from going outside the container  */
 .rescued-animal-img-wrapper {
     overflow: hidden;
-
-}
-
-/* For smooth transition when scaling */
-.rescued-animal-img-wrapper img {
-    transition: transform .5s, filter 0.5s ease-in-out;
-    filter    : grayscale(0);
 }
 
 /* .stories  */
@@ -199,14 +205,21 @@
     width        : 200px;
     height       : 140px;
     border-radius: 50%;
-
 }
 
 /* image should be withing the container size  */
 .stories .current-story .rescued-animal-img-wrapper img {
-    width        : 200px;
-    height       : 140px;
-    border-radius: 50%;
+    width     : 200px;
+    height    : 140px;
+    /* For smooth transition when scaling */
+    transition: transform .5s, filter 0.5s ease-in-out;
+    filter    : grayscale(0);
+}
+
+/* Hover the entire story container and the image will scale  */
+.stories .current-story:hover .rescued-animal-img-wrapper img {
+    transform: scale(1.4);
+    filter   : grayscale(1);
 }
 
 .story-paragraph {
@@ -219,13 +232,6 @@
 .current-story:hover,
 .story-paragraph p {
     color: rgb(202, 202, 209);
-}
-
-/* Prevents the text from going outside the box */
-.story-paragraph p {
-    white-space  : pre-wrap;
-    overflow     : hidden;
-    text-overflow: ellipsis;
 }
 
 .story-title {
@@ -241,13 +247,16 @@
 .story-image-render {
     height       : 150px;
     width        : 150px;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 .current-story-dashboard {
-    width                  : 33.4%;
+    position               : relative;
+    width                  : 34%;
+    min-width              : 450px;
+    max-width              : 810px;
     background             : #fff;
-    max-height             : 750px;
+    max-height             : 700px;
     margin                 : 21px;
     padding                : 1px;
     line-height            : 25px;
@@ -269,14 +278,4 @@
     transition      : ease-in-out 0.4s;
 
     z-index: 1;
-}
-
-.display-pictures.dashboard {
-    position        : relative;
-    display         : inline-block;
-    /* left         : 50%; */
-    /* transform    : translateX(-50%); */
-    width           : 200px;
-    height          : 140px;
-    border-radius   : 50%;
 }
