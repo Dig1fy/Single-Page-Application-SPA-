@@ -62,13 +62,7 @@ export default {
         create(context) {
             checkForUser(context)
             const user = firebase.auth().currentUser;
-            let imagesRef = document.querySelector('#upload-story-images'), tempMainPic;
-            
 
-            if (imagesRef.files.length > 0) {
-                tempMainPic = imagesRef.files[0];
-                console.log(tempMainPic);
-            }
             /*
             * We create new story and save it in the firestore
             * context.params come from the handlebars template (create-story.hbs)
@@ -91,6 +85,7 @@ export default {
                     context.redirect('#/home');
                 })
                 .catch(e => alert(e.message));
+
         },
 
         update(context) {
@@ -145,6 +140,7 @@ function uploadImage(imageFile, user, storyId, data) {
             models.story.edit(storyId, data)
         })
         .catch(b => console.log(b));
+
 }
 
 function displayUserName(context) {

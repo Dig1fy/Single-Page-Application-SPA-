@@ -96,7 +96,7 @@ export default {
             const currentUserData = { username, email, phonenumber, age };
 
             if (age && (age < 16 || age > 100)) {
-                alert('Age should be between 16 - 100')
+                alert('Unfortunately, only users between 16 - 100 years of age are allowed to register in our platform')
             } else {
 
                 // We also update auth email so we can login with the updated email afterwards
@@ -109,7 +109,10 @@ export default {
                         })
                     })
                     .then(Promise.all([updateProfilePicture()]))
-                    .then(context.redirect('#/user/profile'))
+                    .then(setTimeout(function() {
+                        context.redirect('#/user/profile');
+                      }, 700))
+                      .then(alert('Your profile has been updated successfully!'))
                     .catch(function (error) {
                         alert(error.message);
                     });
