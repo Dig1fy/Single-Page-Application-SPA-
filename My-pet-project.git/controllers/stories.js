@@ -78,6 +78,11 @@ export default {
                 images: []
             }
 
+            let result = storyValidation(data)
+            if (result !== true) {
+                alert(result);
+                return;
+            }
             //Firebase returns the created entity with id so we can use it to track our story.
             models.story.create(data)
                 .then(response => {
@@ -185,4 +190,34 @@ function listenForUploadedPictures() {
             alert("This browser does not support HTML5 FileReader.");
         }
     }
+}
+
+function storyValidation(data) {
+    const title = data.title;
+    const images = data.images;
+    const email = data.email;
+    const phoneNumber = data.phonenumber;
+    const description = data.description;
+
+    if (description.length === 0 ) {
+        return 'Your story description cannot be empty!'
+    }
+
+    if (title.length > 65) {
+        return 'Your title cannot exceed 65 symbols!'
+    }
+
+    if (images.length > 8) {
+        return 'You can upload up to 8 pictures/photos!'
+    }
+
+    if(email.length > 100){
+        return 'Your email cannot exceed 100 symbols!'
+    }
+
+    if(phoneNumber.length > 20){
+        return 'Your phone number is incorrect!'
+    }
+
+    return true;
 }

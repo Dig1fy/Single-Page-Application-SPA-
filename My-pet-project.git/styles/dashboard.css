@@ -1,22 +1,25 @@
 .home-content {
-    position       : static;
+    position       : relative;
     justify-content: center;
     text-align     : center;
-    max-width      : 75%;
-    height         : 115%;
+    /* max-width      : 75%; */
+    /* height         : 115%; */
+
+    margin     : auto;
+    width      : 100%;
+    padding    : 0px;
 }
 
 .home-content-wrapper {
-    position       : absolute;
-    justify-content: center;
-    text-align     : center;
-    width          : 100%;
+    margin     : auto;
+    width      : 90%;
+    padding    : 0px;
 }
 
 .head-pic-wrapper {
     position            : relative;
     text-align          : center;
-    width               : 100%;
+    /* width               : 100%; */
     height              : 25%;
     /* background-repeat: no-repeat; */
     /* z-index          : -1; */
@@ -146,10 +149,10 @@ h3,
 h2,
 h1,
 h4,
-h5,
-.story-title {
-    white-space  : pre-wrap;
-    overflow     : hidden;
+h5 {
+    /* white-space  : pre-wrap;
+    overflow     : hidden; */
+
     text-overflow: ellipsis;
 }
 
@@ -234,26 +237,26 @@ h5,
     color: rgb(202, 202, 209);
 }
 
-.story-title {
-    height: 29px;
-}
-
 .story-title h3 {
+    font-size    : 22px;
     white-space  : pre;
     overflow     : hidden;
     text-overflow: ellipsis;
+    color        : #2f32c0;
+    text-shadow  : 1px 1px 1px rgb(7, 145, 92);
+    /* max-height: 22px; */
 }
 
 .story-image-render {
-    height       : 150px;
-    width        : 150px;
+    height    : 150px;
+    width     : 150px;
     box-sizing: border-box;
 }
 
 .current-story-dashboard {
     position               : relative;
     width                  : 34%;
-    min-width              : 450px;
+    min-width              : 650px;
     max-width              : 810px;
     background             : #fff;
     max-height             : 700px;
@@ -278,4 +281,9 @@ h5,
     transition      : ease-in-out 0.4s;
 
     z-index: 1;
+}
+
+.stories-no-story-picture {
+    height : 65px;
+    padding: 20px;
 }
