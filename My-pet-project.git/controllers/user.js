@@ -111,7 +111,7 @@ export default {
                     .then(Promise.all([updateProfilePicture()]))
                     .then(setTimeout(function() {
                         context.redirect('#/user/profile');
-                      }, 700))
+                      }, 1500))
                       .then(alert('Your profile has been updated successfully!'))
                     .catch(function (error) {
                         alert(error.message);

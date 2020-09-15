@@ -31,21 +31,14 @@
 
 .share-story-btn-wrapper {
     position   : relative;
-    display: flex;
-    text-align: center;
-    margin-top : 40px;
-    width      : 100%;
-    display            : -webkit-box;
-    display            : -moz-box;
-    display            : -ms-flexbox;
-    left: 41.5%;
-    right: 65%;
-    /* padding-left: 42.5%; */
+    margin: 0 auto;
+    padding-top: 65px;
 }
 
 .create-story-btn {
-    position  : relative;
-    text-align: center;
+    /* position  : relative; */
+    /* text-align: center; */
+    margin: 0 auto;
     margin-top: 255px;
 
     justify-content : center;
@@ -63,5 +56,6 @@
 
 .create-story-btn:hover {
     background-color: rgb(152, 243, 4);
-    text-align      : left;
+    border-radius: 35%;
+    height: 150px;
 }

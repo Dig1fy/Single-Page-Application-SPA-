@@ -30,8 +30,8 @@ import controllers from '../controllers/index.js'
         //The storyId should be named the same way as in the handlebars template. Then in controllers, it comes as context param. 
         this.get('#/story/details/:storyId', controllers.stories.get.details)
         //update the number of likes
-        this.post('#/story/details/update/:storyId', controllers.stories.post.update)
-        
+        this.post('#/story/details/likes/:storyId', controllers.stories.post.likes)
+        this.post('#/story/details/comments/:storyId', controllers.stories.post.comments)
 
     })
     

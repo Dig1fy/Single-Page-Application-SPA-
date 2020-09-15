@@ -35,14 +35,14 @@ export default {
         details(context) {
             checkForUser(context)
             displayUserName(context);
+
             const { storyId } = context.params;
-
-
 
             models.story.get(storyId)
                 .then(response => {
                     //Attach the id to the story and returns the entire entity with all story details. 
                     const story = idGenerator(response);
+                    console.log(story);
 
                     //To make it easier when using the templates (hbs), we attach the story details to the context. So when we use the templates, we access each element directly (instead of context.description, context.username, context.email etc., we go for description, username, email)
                     Object.keys(story).forEach(key => {
@@ -51,6 +51,7 @@ export default {
 
                     //We check if the current user is the author of the story.
                     context.isAuthor = story.uid === localStorage.getItem('userId');
+                    context.comments = story.comments;
 
                     extend(context).then(function () {
                         this.partial('../views/sections/details.hbs')
@@ -89,13 +90,13 @@ export default {
                     checkForNewlyUplodadeImages(response, user, data)
                     setTimeout(function () {
                         context.redirect('#/sections/stories')
-                    }, 300)
+                    }, 500)
                 })
                 .catch(e => alert(e.message));
 
         },
 
-        update(context) {
+        likes(context) {
             //We attached the storyId in the template so we can retrieve it as context param
             const { storyId } = context.params;
 
@@ -114,10 +115,48 @@ export default {
                         story.likes += 1;
                         story.peopleWhoHaveLiked.push(currentPersonId)
 
-                        let likes = document.querySelector("#root > div > div > div > form > div > p");
+                        let likes = document.querySelector("#details-likes");
                         likes.textContent++;
                         return models.story.edit(storyId, story);
                     }
+                })
+        },
+
+        comments(context) {
+            //TODO
+            // IMPLEMENT THE LOGIC - add comments/replies
+            checkForUser(context);
+            const { comment, storyId } = context.params;
+
+            models.story.get(storyId)
+                .then(response => {
+                    const story = idGenerator(response)
+                    let currentUserName = context.currentUserName === null || context.currentUserName === undefined ? 'Anonymous' : context.currentUserName;
+                    let currentUserPicture = context.photoURL === null || context.photoURL === undefined ? '../images/profile-picture.png' : context.photoURL
+                    let now = new Date();
+
+
+                    let year = now.getFullYear();
+                    let month = now.getMonth() + 1;
+                    let day = now.getDate();
+                    let hour = now.getHours();
+                    let minute = now.getMinutes();
+                    let second = now.getSeconds();
+                    
+                    let currentDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+
+                    let newComment = {
+                        user: currentUserName,
+                        photoURL: currentUserPicture,
+                        dateTime: currentDate,
+                        comment: comment
+                    }
+
+                    story.comments.push(newComment)
+                    context.comments = story.comments;
+
+                    //TODO- add comment via DOM
+                    return models.story.edit(storyId, story);
                 })
         }
     }
@@ -199,7 +238,7 @@ function storyValidation(data) {
     const phoneNumber = data.phonenumber;
     const description = data.description;
 
-    if (description.length === 0 ) {
+    if (description.length === 0) {
         return 'Your story description cannot be empty!'
     }
 
@@ -211,11 +250,11 @@ function storyValidation(data) {
         return 'You can upload up to 8 pictures/photos!'
     }
 
-    if(email.length > 100){
+    if (email.length > 100) {
         return 'Your email cannot exceed 100 symbols!'
     }
 
-    if(phoneNumber.length > 20){
+    if (phoneNumber.length > 20) {
         return 'Your phone number is incorrect!'
     }
 

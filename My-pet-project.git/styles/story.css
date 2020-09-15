@@ -29,7 +29,7 @@
 .new-story-photos {
     display       : flow-root;
     font-family   : Poppins-Medium;
-    font-size     : 18px;
+    font-size     : 16px;
     text-shadow   : 1.1px 1px 1px rgb(243, 0, 0);
     color         : rgb(28, 197, 5);
     line-height   : 1.2;
@@ -53,7 +53,7 @@
 .story-description {
     /* text-align: center; */
     font-family: Poppins-Medium;
-    font-size  : 20px;
+    font-size  : 16px;
     color      : rgb(6, 0, 22);
     border     : 2.0px double rgb(211, 207, 3);
     height     : 200px;
@@ -77,7 +77,7 @@
     box-sizing   : border-box;
     border-color : #f0f002;
     border-radius: 5px;
-    font-size    : 18px;
+    font-size    : 16px;
     transition   : width 0.4s ease-in-out;
     color        : #2b3002;
 
@@ -119,7 +119,7 @@
 
 .label-upload-img {
     text-transform: initial;
-    font-size     : 20px;
+    font-size: 16px;
 }
 
 .upload-pic {
@@ -138,10 +138,62 @@
 .story-image-render:active {
 
     /* 400% zoom on click, transforming from top to bottom */
-    transform           : scale(4);
-    transform-origin    : top;
+    transform       : scale(4);
+    transform-origin: top;
 }
 
-.story-image-render:hover{
+.story-image-render:hover {
     cursor: pointer;
+}
+
+/* 
+*      COMMENTS 
+*/
+
+.comment-photo {
+    width        : 55px;
+    height       : 55px;
+    border-radius: 50%;
+    margin-right : 7px;
+    margin-top   : 2px;
+}
+
+.story-comment-content {
+    text-shadow        : 1px 1px 1px rgb(5, 32, 14);
+    font-size: 16px;
+}
+
+.entire-comment-wrapper {
+    display: block;
+    padding: 11px;
+
+}
+
+.comment-info {
+    display: inline-flex;
+}
+
+.story-comment-wrapper {
+    width                    : 550px;
+    height                   : fit-content;
+    border-style             : groove;
+    margin                   : 0 auto;
+    border-radius            : 2%;
+/* Prevents the text from going outside the div      */
+    word-wrap                : break-word;
+    text-align               : left;
+}
+
+.story-comment-userInfo {
+    display: inline-flex;
+    font-size: 16px;
+    color: #032e2a;
+}
+
+.story-comment-userInfo-wrapper {
+    text-align: left;
+}
+
+.story-comment-datetime {
+    font-size: 13px;
 }

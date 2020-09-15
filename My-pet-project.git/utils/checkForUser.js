@@ -9,6 +9,7 @@ export default function checkForUser(context) {
         context.photoURL = user.photoURL === null || user.photoURL === undefined ? '../images/profile-picture.png' : user.photoURL;
         context.isLoggedIn = true;
         context.userId = user.uid;
+        context.currentUserName = user.displayName
         // context.username = user.displayName;
         // localStorage.setItem('userId', user.uid);
         // localStorage.setItem('userEmail', user.email);
@@ -19,6 +20,7 @@ export default function checkForUser(context) {
         context.userId = null;
         context.username = null;
         context.photoURL = null;
+        context.currentUserName = null;
         // localStorage.removeItem('userId');
         // localStorage.removeItem('userEmail');
     }
