@@ -53,9 +53,12 @@ export default {
                     context.isAuthor = story.uid === localStorage.getItem('userId');
                     context.comments = story.comments;
 
-                    extend(context).then(function () {
-                        this.partial('../views/sections/details.hbs')
-                    })
+                    extend(context)
+                        .then(function () {
+                            this.partial('../views/sections/details.hbs')
+                                .then(x => showAllStoryComments())
+                                .then(x=> renderCommentsOnClientSide())
+                        })
                 })
         }
     },
@@ -128,6 +131,8 @@ export default {
             checkForUser(context);
             const { comment, storyId } = context.params;
 
+
+
             models.story.get(storyId)
                 .then(response => {
                     const story = idGenerator(response)
@@ -135,14 +140,13 @@ export default {
                     let currentUserPicture = context.photoURL === null || context.photoURL === undefined ? '../images/profile-picture.png' : context.photoURL
                     let now = new Date();
 
-
                     let year = now.getFullYear();
                     let month = now.getMonth() + 1;
                     let day = now.getDate();
                     let hour = now.getHours();
                     let minute = now.getMinutes();
                     let second = now.getSeconds();
-                    
+
                     let currentDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 
                     let newComment = {
@@ -163,6 +167,21 @@ export default {
 
 }
 
+function renderCommentsOnClientSide (){
+    //TODO - Implement this
+}
+
+function showAllStoryComments(e) {
+
+    const showBtnRef = document.querySelector('#show-hide-comments-btn');
+    const allCommentsRef = document.querySelector('#comment-show-hide');
+
+    showBtnRef.addEventListener('click', function (e) {
+        allCommentsRef.style.display = allCommentsRef.style.display === 'block' ? 'none' : 'block';
+    })
+}
+
+
 function checkForNewlyUplodadeImages(response, user, data) {
     let storyId = response.id;
 
@@ -176,6 +195,7 @@ function checkForNewlyUplodadeImages(response, user, data) {
         }
     }
 }
+
 function uploadImage(imageFile, user, storyId, data) {
 
     let storageDestination = firebase.storage().ref('users/' + user.uid + '/' + storyId + '/' + imageFile.name);
