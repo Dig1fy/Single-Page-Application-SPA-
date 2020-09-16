@@ -22,8 +22,6 @@ export default {
                         else { return -1; }
                     });
 
-                    console.log(allStories);
-
                     context.stories = allStories.slice(0, 3);
 
                     extend(context).then(function () {

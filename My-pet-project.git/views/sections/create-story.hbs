@@ -1,8 +1,6 @@
 {{> header}}
 
 <div class="story-background-image">
-
-  {{!-- <div class="create-story-wrapper"> --}}
   <div class="story-wrapper">
     <form class="create-xxx" action="#/sections/stories/create" method="POST">
       <div class="">
@@ -21,9 +19,6 @@
           required=""></textarea>
       </div>
 
-
-      {{!-- TODO make input image and implement the logic for the fb storage --}}
-
       <label class='new-story-email'>Your email adress</label>
       <p class="input-container">
         <input class="story-input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
@@ -36,9 +31,10 @@
 
       <div class="new-story-photos">
         <div class="uploaded-img-wrapper">
-          <input id="upload-story-images" name="storyImages" type="file" multiple="multiple"/>
-          <label class="label-upload-img" for="upload-story-images"><img src="../../images/new-story-img/upload.png" class="upload-pic"> Upload pictures to your story</label>
-          
+          <input id="upload-story-images" name="storyImages" type="file" multiple="multiple" />
+          <label class="label-upload-img" for="upload-story-images"><img src="../../images/new-story-img/upload.png"
+              class="upload-pic"> Upload pictures to your story</label>
+
           <div id="preview-story-images">
           </div>
         </div>

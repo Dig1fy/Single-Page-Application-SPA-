@@ -42,7 +42,6 @@ export default {
                 .then(response => {
                     //Attach the id to the story and returns the entire entity with all story details. 
                     const story = idGenerator(response);
-                    console.log(story);
 
                     //To make it easier when using the templates (hbs), we attach the story details to the context. So when we use the templates, we access each element directly (instead of context.description, context.username, context.email etc., we go for description, username, email)
                     Object.keys(story).forEach(key => {
@@ -50,14 +49,18 @@ export default {
                     })
 
                     //We check if the current user is the author of the story.
-                    context.isAuthor = story.uid === localStorage.getItem('userId');
+                    context.isAuthor = story.uid === context.userId;
+
+                    console.log(context.uid + ' CONTEXT');
+                    console.log(story.uid + ' STORY');
+                    console.log(story);
+                    console.log(context);
                     context.comments = story.comments;
 
                     extend(context)
                         .then(function () {
                             this.partial('../views/sections/details.hbs')
                                 .then(x => showAllStoryComments())
-                                .then(x=> renderCommentsOnClientSide())
                         })
                 })
         }
@@ -131,47 +134,90 @@ export default {
             checkForUser(context);
             const { comment, storyId } = context.params;
 
+            if (comment.length > 0) {
+                models.story.get(storyId)
+                    .then(response => {
+                        const story = idGenerator(response)
+                        let currentUserName = context.currentUserName === null || context.currentUserName === undefined ? 'Anonymous' : context.currentUserName;
+                        let currentUserPicture = context.photoURL === null || context.photoURL === undefined ? '../images/profile-picture.png' : context.photoURL
+                        let currentDate = getCurrentDateTime()
 
+                        let newComment = {
+                            user: currentUserName,
+                            photoURL: currentUserPicture,
+                            dateTime: currentDate,
+                            comment: comment
+                        }
 
-            models.story.get(storyId)
-                .then(response => {
-                    const story = idGenerator(response)
-                    let currentUserName = context.currentUserName === null || context.currentUserName === undefined ? 'Anonymous' : context.currentUserName;
-                    let currentUserPicture = context.photoURL === null || context.photoURL === undefined ? '../images/profile-picture.png' : context.photoURL
-                    let now = new Date();
+                        story.comments.push(newComment)
+                        context.comments = story.comments;
 
-                    let year = now.getFullYear();
-                    let month = now.getMonth() + 1;
-                    let day = now.getDate();
-                    let hour = now.getHours();
-                    let minute = now.getMinutes();
-                    let second = now.getSeconds();
-
-                    let currentDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
-
-                    let newComment = {
-                        user: currentUserName,
-                        photoURL: currentUserPicture,
-                        dateTime: currentDate,
-                        comment: comment
-                    }
-
-                    story.comments.push(newComment)
-                    context.comments = story.comments;
-
-                    //TODO- add comment via DOM
-                    return models.story.edit(storyId, story);
-                })
+                        renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment)
+                        return models.story.edit(storyId, story);
+                    })
+            } else {
+                alert('Empty comments are not allowed')
+            }
         }
     }
 
 }
 
-function renderCommentsOnClientSide (){
-    //TODO - Implement this
+//Adding the new comment dynamically using the DOM manipulation
+function renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment) {
+
+    if (comment.length > 0) {
+        let parentEl = document.querySelector('#comments-pic-info');
+        let inputTextRef = document.querySelector("#story-comment");
+
+
+        let sss = `<div class="entire-comment-wrapper">
+        <div class="comment-info">
+          <div class="comment-photo">
+            <img class="comment-photo" src="${currentUserPicture}" alt="">
+          </div>
+          <div class="story-comment-userInfo-wrapper">
+            <div class="story-comment-userInfo">${currentUserName}:</div>
+            <div class="story-comment-wrapper">
+              <label class="story-comment-content">${comment}</label>
+            </div>
+            <div class="story-comment-datetime">${currentDate}</div>
+          </div>
+          <br>
+        </div>
+      </div>`
+
+        parentEl.innerHTML += sss;
+        inputTextRef.value = "";
+    }
+
+
+}
+
+function getCurrentDateTime() {
+    let now = new Date();
+
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate();
+    let hour = now.getHours();
+    let minute = now.getMinutes();
+    let second = now.getSeconds();
+
+    let currentDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+    return currentDate;
 }
 
 function showAllStoryComments(e) {
+
+    /* 
+    * If we leave the first comment it will show "there are no comments yet". This is due to the implementec logic in details.hbs (handlebars), which checks if   * there are any comments when rendering. Since we are adding the first comment on the serverside (with this function) but not on the server side, we need to  * explicitly check this case. 
+    */
+    let noCommentsText = document.querySelector('#comments-pic-info').children[1];
+    if (noCommentsText.className === 'text-center') {
+        noCommentsText.textContent = "";
+    }
+
 
     const showBtnRef = document.querySelector('#show-hide-comments-btn');
     const allCommentsRef = document.querySelector('#comment-show-hide');

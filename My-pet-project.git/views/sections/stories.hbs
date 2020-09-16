@@ -1,13 +1,4 @@
 {{> header}}
-
-{{!-- comments: []
-email: "q2kforeveralon3@gmail.com"
-idFromFirebase: "1jNY1AmkgyX4Do4vwOWN"
-images: []
-likes: 0
-phonenumber: "0988946552"
-uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
-
 <div class="share-story-btn-wrapper">
   <a href="#/sections/stories/create" class="create-story-btn" type="submit">Share your story</a>
 </div>
@@ -17,9 +8,9 @@ uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
     {{#each stories}}
 
     <div class="current-story-dashboard">
-      
+
       <div class="display-pictures.dashboard">
-        
+
         {{#each images}}
         <img class="story-image-render" src="{{src}}" alt="">
         {{else}}
@@ -38,13 +29,11 @@ uid: "w3RMpdybCian5gZaHoQcFvXYCXy2"  --}}
         <a href="#/story/details/{{idFromFirebase}}" class="see-the-whole-story">See the whole story</a>
       </div>
     </div>
-    
+
     {{else}}
     <h1 class="text-center">No stories yet. Be the first to post a story!</h1>
     {{/each}}
 
   </div>
 </div>
-
-
 {{> footer}}
