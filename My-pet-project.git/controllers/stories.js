@@ -1,7 +1,7 @@
 import extend from '../utils/context.js';
 import models from '../models/index.js';
 import checkForUser from '../utils/checkForUser.js';
-import idGenerator from '../utils/idGenerator.js';
+import docModifier from '../utils/idGenerator.js';
 
 export default {
     get: {
@@ -14,7 +14,7 @@ export default {
                 //Тази простотия идва от firebase документацията. Първоначално връща един смахнат обект с много пропъртита. Трябва да му дадем "docs", да минем през всеки запис и да му дадем ".data", което реално е нашият обект от firebase. (т.е. response.docs.foreach(x=>x.data))
 
                 //This is where we attach id to to each story (the id itself comes from Firebase)
-                const allStories = response.docs.map(idGenerator)
+                const allStories = response.docs.map(docModifier)
 
                 context.stories = allStories;
                 extend(context).then(function () {
@@ -41,7 +41,7 @@ export default {
             models.story.get(storyId)
                 .then(response => {
                     //Attach the id to the story and returns the entire entity with all story details. 
-                    const story = idGenerator(response);
+                    const story = docModifier(response);
 
                     //To make it easier when using the templates (hbs), we attach the story details to the context. So when we use the templates, we access each element directly (instead of context.description, context.username, context.email etc., we go for description, username, email)
                     Object.keys(story).forEach(key => {
@@ -51,10 +51,6 @@ export default {
                     //We check if the current user is the author of the story.
                     context.isAuthor = story.uid === context.userId;
 
-                    console.log(context.uid + ' CONTEXT');
-                    console.log(story.uid + ' STORY');
-                    console.log(story);
-                    console.log(context);
                     context.comments = story.comments;
 
                     extend(context)
@@ -62,6 +58,25 @@ export default {
                             this.partial('../views/sections/details.hbs')
                                 .then(x => showAllStoryComments())
                         })
+                })
+        },
+        edit(context) {
+
+            const { storyId } = context.params;
+            context.idFromFirebase = storyId;
+
+            models.story.get(storyId).then(response => {
+                const storyInfo = docModifier(response);
+
+                Object.keys(storyInfo).forEach(key => {
+                    context[key] = storyInfo[key]
+                })
+            })
+                .then(() => {
+                    extend(context).then(function () {
+                        this.partial('../views/sections/edit-story.hbs')
+                            .then( x=> listenForUploadedPictures());
+                    })
                 })
         }
     },
@@ -108,7 +123,7 @@ export default {
 
             models.story.get(storyId)
                 .then(response => {
-                    const story = idGenerator(response) //понеже ни връща шантав обект (response), го минаваме през modifier, за да стане js
+                    const story = docModifier(response) //понеже ни връща шантав обект (response), го минаваме през modifier, за да стане js
 
                     //Check if the current user has already liked the story. If yes, he cannot like it again, otherwise, add him in the list of people who have liked the story and adjust the like's count
                     let currentPersonId = firebase.auth().currentUser.uid;
@@ -137,7 +152,7 @@ export default {
             if (comment.length > 0) {
                 models.story.get(storyId)
                     .then(response => {
-                        const story = idGenerator(response)
+                        const story = docModifier(response)
                         let currentUserName = context.currentUserName === null || context.currentUserName === undefined ? 'Anonymous' : context.currentUserName;
                         let currentUserPicture = context.photoURL === null || context.photoURL === undefined ? '../images/profile-picture.png' : context.photoURL
                         let currentDate = getCurrentDateTime()
@@ -159,8 +174,120 @@ export default {
                 alert('Empty comments are not allowed')
             }
         }
-    }
+    },
+    del: {
+        delete(context) {
+            const { storyId } = context.params;
 
+            models.story.delete(storyId)
+                .then(r => {
+                    context.redirect('#/sections/stories')
+                })
+                .catch(e => { alert(e.message) })
+        }
+    },
+
+    put: {
+        //TODO - get the story from the DB and then edit it
+        edit(context) {
+            // const { storyId } = context.params;
+            // const user = firebase.auth().currentUser;
+
+
+            // models.story.get(storyId)
+            //     .then(response => {
+            //         const story = docModifier(response) //it returns weird object with a lot of properties. We need to transofrm it into js object
+
+
+
+            //          models.story.edit(storyId, storyData)
+            //     .then(response => {
+            //         checkForNewlyUplodadeImages(tempStoryId, user, storyData)
+            //         console.log(response);
+
+            //     })
+            //     .then(context.redirect(`#/story/details/${storyId}`))
+            //     .catch(e => alert(e.message));
+
+            //     })
+
+            // models.story.edit(storyId, storyData)
+            //     .then(response => {
+            //         checkForNewlyUplodadeImages(tempStoryId, user, storyData)
+            //         console.log(response);
+
+            //     })
+            //     .then(context.redirect(`#/story/details/${storyId}`))
+            //     .catch(e => alert(e.message));
+
+
+
+
+
+            const { storyId } = context.params;
+            const user = firebase.auth().currentUser;
+
+            models.story.get(storyId)
+                .then(response => {
+                    const story = docModifier(response);
+
+                    let oldImages = story.images;
+                    context.images = oldImages;
+
+                    let tempId = { id: storyId }
+                    // checkForNewlyUplodadeImages(tempId, user, story)
+
+
+                }
+
+                )
+
+
+            let imgURL = "https://firebasestorage.googleapis.com/v0/b/my-first-project-19511.appspot.com/o/users%2FlTUeiyJKjWN2s4gvn5zEpObNY2N2%2FtpmwhNflP3PxAR1KH8iS%2F4.jpg?alt=media&token=5561463d-3e2f-4bc8-93d7-7d1da57081c6"
+
+            //THIS IS HOW WE DELETE VIA URL FROM FIREBASE STORAGE
+            // var desertRef = firebase.storage().refFromURL(imgURL)
+            // desertRef.delete()
+
+            let images = firebase.storage().ref('users/' + user.uid + '/' + storyId);
+
+            // console.log(images2);
+
+            //             const images = firebase.storage().ref().child('companyImages');
+            //   const image = images.child('image1');
+            //   image.getDownloadURL().then((url) => { this.setState({ img: url }));
+
+
+            //description: "qweqwewqzzzzzz"
+            // email: "q2kforeveralon3@gmail.com"
+            // phonenumber: "qqqq"
+            // storyId: "25adYqPDeXBf9BN7gFeM"
+            // title: "sssss"
+            // let storyData = { ...context.params, images: [] }
+
+            // let isDataValid = storyValidation(storyData)
+            // if (isDataValid !== true) {
+            //     alert(isDataValid);
+            //     return;
+            // }
+
+            // let tempStoryId = { id: storyId }
+            // checkForNewlyUplodadeImages(tempStoryId, user, storyData)
+
+            // models.story.edit(storyId, storyData)
+            //     .then(response => {
+            //         console.log(response);
+
+            //     })
+            //     .then(
+            //         setTimeout(function () {
+            //             context.redirect(`#/story/details/${storyId}`)
+            //         }, 1500))
+
+
+            //     .catch(e => alert(e.message));
+        }
+    }
 }
 
 //Adding the new comment dynamically using the DOM manipulation
@@ -169,7 +296,6 @@ function renderCommentsOnClientSide(currentUserName, currentUserPicture, current
     if (comment.length > 0) {
         let parentEl = document.querySelector('#comments-pic-info');
         let inputTextRef = document.querySelector("#story-comment");
-
 
         let sss = `<div class="entire-comment-wrapper">
         <div class="comment-info">
@@ -190,8 +316,6 @@ function renderCommentsOnClientSide(currentUserName, currentUserPicture, current
         parentEl.innerHTML += sss;
         inputTextRef.value = "";
     }
-
-
 }
 
 function getCurrentDateTime() {
@@ -230,8 +354,8 @@ function showAllStoryComments(e) {
 
 function checkForNewlyUplodadeImages(response, user, data) {
     let storyId = response.id;
-
     let imagesRef = document.querySelector('#upload-story-images');
+    console.log(imagesRef.children);
     //Check if there are any images uploaded
     if (imagesRef.files.length > 0) {
         for (var i = 0; i < imagesRef.files.length; i++) {

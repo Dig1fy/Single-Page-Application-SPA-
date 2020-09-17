@@ -8,9 +8,9 @@ export default {
     get(id) {
         return firebase.firestore().collection('stories').doc(id).get();
     },
-    // close(id){
-    //     return firebase.firestore().collection('treks').doc(id).delete();
-    // },
+    delete(id){
+        return firebase.firestore().collection('stories').doc(id).delete();
+    },
     edit(id, data) {
         return firebase.firestore().collection('stories').doc(id).update(data);
     },

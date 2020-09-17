@@ -32,7 +32,10 @@ import controllers from '../controllers/index.js'
         //update the number of likes
         this.post('#/story/details/likes/:storyId', controllers.stories.post.likes)
         this.post('#/story/details/comments/:storyId', controllers.stories.post.comments)
-
+        this.get('#/story/delete/:storyId', controllers.stories.del.delete)
+        //edit a story
+        this.get('#/story/edit/:storyId', controllers.stories.get.edit)
+        this.post('#/story/edit/:storyId', controllers.stories.put.edit)
     })
     
     
