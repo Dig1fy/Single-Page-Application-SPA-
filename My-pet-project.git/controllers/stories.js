@@ -179,51 +179,36 @@ export default {
         delete(context) {
             const { storyId } = context.params;
 
-            models.story.delete(storyId)
-                .then(r => {
-                    context.redirect('#/sections/stories')
+            /*
+            * NOTE: In cloud firestore, we keep only URLs to each story picture. The pictures themselves are being stored in the firebase storage;
+            * First we need to manually delete each picture from the firebase storage (we need to access the images url, therefore the story delete comes after this one). Firebase does not have a concept for deleting entire folder recursively
+            */
+            models.story.get(storyId)
+                .then(response => {
+                    let story = docModifier(response);
+                    console.log(story);
+                    let oldImages = story.images;
+                    let desertRef = firebase.storage()
+
+                    for (let i = 0; i < oldImages.length; i++) {
+                        let imageUrl = oldImages[i].src
+                        desertRef.refFromURL(imageUrl).delete()
+                    }
                 })
-                .catch(e => { alert(e.message) })
+                /*
+                * After deleting the images from the storage, we can proceed with deleting the story itself.
+                */
+                .then(response => {
+                    models.story.delete(storyId)
+                        .then(r => {
+                            context.redirect('#/sections/stories')
+                        })
+                        .catch(e => { alert(e.message) })
+                })
         }
     },
-
     put: {
-        //TODO - get the story from the DB and then edit it
         edit(context) {
-            // const { storyId } = context.params;
-            // const user = firebase.auth().currentUser;
-
-
-            // models.story.get(storyId)
-            //     .then(response => {
-            //         const story = docModifier(response) //it returns weird object with a lot of properties. We need to transofrm it into js object
-
-
-
-            //          models.story.edit(storyId, storyData)
-            //     .then(response => {
-            //         checkForNewlyUplodadeImages(tempStoryId, user, storyData)
-            //         console.log(response);
-
-            //     })
-            //     .then(context.redirect(`#/story/details/${storyId}`))
-            //     .catch(e => alert(e.message));
-
-            //     })
-
-            // models.story.edit(storyId, storyData)
-            //     .then(response => {
-            //         checkForNewlyUplodadeImages(tempStoryId, user, storyData)
-            //         console.log(response);
-
-            //     })
-            //     .then(context.redirect(`#/story/details/${storyId}`))
-            //     .catch(e => alert(e.message));
-
-
-
-
-
             const { storyId } = context.params;
             const user = firebase.auth().currentUser;
 
@@ -232,18 +217,29 @@ export default {
                     const story = docModifier(response);
                     let oldImages = story.images;
 
-                    ////DELETE PICTURE 1 BY 1 FROM URL
-                    // let desertRef = firebase.storage()
-
-                    // for (let i = 0; i < oldImages.length; i++) {
-                    //     let imageUrl = oldImages[i].src
-                    //     desertRef.refFromURL(imageUrl).delete()
-                    // }
-                    let images = firebase.storage().ref('users/' + user.uid + '/' + storyId);
-                    
-
                     let storyData = { ...context.params }
-                    
+
+                    let uploadedPhotos = document.querySelector('#upload-story-images');
+                    let picturesCount = uploadedPhotos.files.length;
+
+                    //Check if the user has uploaded new files when editing the story. If yes, delete the old ones from the firebase storage and upload the new ones. Unfortunately, firebase API does not provide easier way for listing all files and manipulate them. The only way is if we knew the photos names, which means refactoring a lof of logic. 
+                    if (picturesCount > 0) {
+                        storyData = { ...context.params, images: [] }
+
+                        //Delete the old pictures via the clod firestore picture URLs
+                        let desertRef = firebase.storage()
+
+                        for (let i = 0; i < oldImages.length; i++) {
+                            let imageUrl = oldImages[i].src
+                            desertRef.refFromURL(imageUrl).delete()
+                        }
+
+                        for (var i = 0; i < picturesCount; i++) {
+
+                            var imageFile = uploadedPhotos.files[i];
+                            uploadImage(imageFile, user, storyId, storyData)
+                        }
+                    }
 
                     // let isDataValid = storyValidation(storyData)
                     // if (isDataValid !== true) {
@@ -252,10 +248,6 @@ export default {
                     // }
 
                     models.story.edit(storyId, storyData)
-                        .then(response => {
-                            // console.log(response);
-
-                        })
                         .then(
                             setTimeout(function () {
                                 context.redirect(`#/story/details/${storyId}`)
@@ -263,59 +255,7 @@ export default {
 
 
                         .catch(e => alert(e.message));
-
-                    let tempId = { id: storyId }
-                    // checkForNewlyUplodadeImages(tempId, user, story)
-
-
-                }
-
-                )
-
-
-            let imgURL = "https://firebasestorage.googleapis.com/v0/b/my-first-project-19511.appspot.com/o/users%2FlTUeiyJKjWN2s4gvn5zEpObNY2N2%2FtpmwhNflP3PxAR1KH8iS%2F4.jpg?alt=media&token=5561463d-3e2f-4bc8-93d7-7d1da57081c6"
-
-            //THIS IS HOW WE DELETE VIA URL FROM FIREBASE STORAGE
-            // var desertRef = firebase.storage().refFromURL(imgURL)
-            // desertRef.delete()
-
-            let images = firebase.storage().ref('users/' + user.uid + '/' + storyId);
-
-            // console.log(images2);
-
-            //             const images = firebase.storage().ref().child('companyImages');
-            //   const image = images.child('image1');
-            //   image.getDownloadURL().then((url) => { this.setState({ img: url }));
-
-
-            //description: "qweqwewqzzzzzz"
-            // email: "q2kforeveralon3@gmail.com"
-            // phonenumber: "qqqq"
-            // storyId: "25adYqPDeXBf9BN7gFeM"
-            // title: "sssss"
-            // let storyData = { ...context.params, images: [] }
-
-            // let isDataValid = storyValidation(storyData)
-            // if (isDataValid !== true) {
-            //     alert(isDataValid);
-            //     return;
-            // }
-
-            // let tempStoryId = { id: storyId }
-            // checkForNewlyUplodadeImages(tempStoryId, user, storyData)
-
-            // models.story.edit(storyId, storyData)
-            //     .then(response => {
-            //         console.log(response);
-
-            //     })
-            //     .then(
-            //         setTimeout(function () {
-            //             context.redirect(`#/story/details/${storyId}`)
-            //         }, 1500))
-
-
-            //     .catch(e => alert(e.message));
+                })
         }
     }
 }
@@ -380,7 +320,6 @@ function showAllStoryComments(e) {
         allCommentsRef.style.display = allCommentsRef.style.display === 'block' ? 'none' : 'block';
     })
 }
-
 
 function checkForNewlyUplodadeImages(response, user, data) {
     let storyId = response.id;
