@@ -75,7 +75,7 @@ export default {
                 .then(() => {
                     extend(context).then(function () {
                         this.partial('../views/sections/edit-story.hbs')
-                            .then( x=> listenForUploadedPictures());
+                            .then(x => listenForUploadedPictures());
                     })
                 })
         }
@@ -230,9 +230,39 @@ export default {
             models.story.get(storyId)
                 .then(response => {
                     const story = docModifier(response);
-
                     let oldImages = story.images;
-                    context.images = oldImages;
+
+                    ////DELETE PICTURE 1 BY 1 FROM URL
+                    // let desertRef = firebase.storage()
+
+                    // for (let i = 0; i < oldImages.length; i++) {
+                    //     let imageUrl = oldImages[i].src
+                    //     desertRef.refFromURL(imageUrl).delete()
+                    // }
+                    let images = firebase.storage().ref('users/' + user.uid + '/' + storyId);
+                    
+
+                    let storyData = { ...context.params }
+                    
+
+                    // let isDataValid = storyValidation(storyData)
+                    // if (isDataValid !== true) {
+                    //     alert(isDataValid);
+                    //     return;
+                    // }
+
+                    models.story.edit(storyId, storyData)
+                        .then(response => {
+                            // console.log(response);
+
+                        })
+                        .then(
+                            setTimeout(function () {
+                                context.redirect(`#/story/details/${storyId}`)
+                            }, 1500))
+
+
+                        .catch(e => alert(e.message));
 
                     let tempId = { id: storyId }
                     // checkForNewlyUplodadeImages(tempId, user, story)
@@ -397,6 +427,11 @@ function listenForUploadedPictures() {
             const regex = /(.jpg|.jpeg|.gif|.png|.bmp)$/;
             //  /^([a-zA-Z0-9\s_\\.()\-:])+
             //  (.jpg|.jpeg|.gif|.png|.bmp)$/;
+
+            if (fileUpload.files.length > 8) {
+                alert('You can upload up to 8 pictures/photos!')
+                return;
+            }
 
             for (var i = 0; i < fileUpload.files.length; i++) {
                 let file = fileUpload.files[i];
