@@ -13,6 +13,4 @@ export default {
     logout() {
         return firebase.auth().signOut()
     },
-
-
 }

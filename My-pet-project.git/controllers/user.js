@@ -61,32 +61,32 @@ export default {
             const { email, password, rePassword } = context.params;
 
             //some input validation
-            let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            let isEmailValid = validateParams(email, undefined, undefined, undefined)
 
-            if (!email.match(mailformat)) {
-                alert("You have entered an invalid email address!");
-            } else if (!email || !password || !rePassword) {
-                alert('Please fill in all fields')
-            } else if (password === rePassword) {
-                //first we register the new user via the firebase.auth();
-                Models.user.register(email, password)
-                    .then(extend(context))
-                    .then(x => {
-                        context.redirect('#/user/login')
-                    })
-                    //then we create new user record in the realtime database 
-                    .then(x => {
-                        let currUser = firebase.auth().currentUser;
-                        let userUid = currUser.uid;
-                        let userData = {
-                            email: email
-                        }
+            if (isEmailValid) {
+                if (!email || !password || !rePassword) {
+                    alert('Please fill in all fields')
+                } else if (password === rePassword) {
+                    //first we register the new user via the firebase.auth();
+                    Models.user.register(email, password)
+                        .then(extend(context))
+                        .then(x => {
+                            context.redirect('#/user/login')
+                        })
+                        //then we create new user record in the realtime database 
+                        .then(x => {
+                            let currUser = firebase.auth().currentUser;
+                            let userUid = currUser.uid;
+                            let userData = {
+                                email: email
+                            }
 
-                        db.user.setProfileInfo(userUid, userData)
-                    })
-                    .catch(e => alert(e));
-            } else {
-                alert('Confirm password did not match!')
+                            db.user.setProfileInfo(userUid, userData)
+                        })
+                        .catch(e => alert(e));
+                } else {
+                    alert('Confirm password did not match!')
+                }
             }
         },
 
@@ -94,61 +94,58 @@ export default {
             const user = firebase.auth().currentUser;
             const { username, email, phonenumber, age } = context.params;
             const currentUserData = { username, email, phonenumber, age };
+            let areParamsValid = validateParams(email, username, phonenumber, age)
 
-            if (age && (age < 16 || age > 100)) {
-                alert('Unfortunately, only users between 16 - 100 years of age are allowed to register in our platform')
-            } else {
-
+            if (areParamsValid) {
                 // We also update auth email so we can login with the updated email afterwards
                 db.user.setProfileInfo(user.uid, currentUserData);
                 user.updateEmail(email).catch(e => { alert(e) })
                     .then(x => {
-                        console.log('1')
                         user.updateProfile({
                             displayName: username
                         })
                     })
                     .then(Promise.all([updateProfilePicture()]))
-                    .then(setTimeout(function() {
+                    .then(setTimeout(function () {
                         context.redirect('#/user/profile');
-                      }, 2000))
-                      .then(alert('Your profile has been updated successfully!'))
+                    }, 2000))
+                    .then(alert('Your profile has been updated successfully!'))
                     .catch(function (error) {
                         alert(error.message);
                     });
+            }
+            ///////////////////////////
+            function updateProfilePicture() {
+                const inputImg = document.querySelector('#input-image');
+                const user = firebase.auth().currentUser;
+                
+                //We proceed further only if the user has chosen new profile picture. 
+                if (inputImg.files.length > 0 && user.photoURL !== inputImg.files[0]) {
 
-                ///////////////////////////
-                function updateProfilePicture() {
-                    const inputImg = document.querySelector('#input-image');
-                    const user = firebase.auth().currentUser;
-
-                    //We proceed further only if the user has chosen new profile picture. 
-                    if (inputImg.files.length > 0 && user.photoURL !== inputImg.files[0]) {
-
-                        /*
-                        * Accessing the firebase storage -> users/userId/profileImg, then retrieving the newly 
-                        * generated picture URL
-                        */
-                        const ref = firebase.storage().ref('users/' + user.uid);
-                        const file = document.querySelector('#input-image').files[0]
-                        const name = 'profileImg';
-                        const metadata = {
-                            contentType: file.type
-                        };
-                        const task = ref.child(name).put(file, metadata);
-                        task
-                            .then(snapshot => snapshot.ref.getDownloadURL())
-                            .then((url) => {
-                                user.updateProfile({
-                                    photoURL: url
-                                })
-                                // alert('Profile PICTURE updated')
+                    /*
+                    * Accessing the firebase storage -> users/userId/profileImg, then retrieving the newly 
+                    * generated picture URL
+                    */
+                    const ref = firebase.storage().ref('users/' + user.uid);
+                    const file = document.querySelector('#input-image').files[0]
+                    const name = 'profileImg';
+                    const metadata = {
+                        contentType: file.type
+                    };
+                    const task = ref.child(name).put(file, metadata);
+                    task
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+                        .then((url) => {
+                            user.updateProfile({
+                                photoURL: url
                             })
-                            // .then(checkForUser())                        
-                            .catch(e => alert(e.message));
-                    }
+                            // alert('Profile PICTURE updated')
+                        })
+                        // .then(checkForUser())                        
+                        .catch(e => alert(e.message));
                 }
             }
+
         },
         //We delete all user data - firebase authentication + firebase db + storage with the current user id. 
         delete(context) {
@@ -172,4 +169,58 @@ export default {
                 });
         },
     }
+}
+
+function validateParams(email, username, phonenumber, age) {
+    if (email) {
+        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (!email.match(mailformat)) {
+            alert("You have entered an invalid email address!");
+            return false;
+        }
+
+        if (email.length <= 7 || email.length > 60) {
+            alert("Your email should be between 7 and 60 symbols long");
+            return false;
+        }
+    }
+
+    if (username) {
+        if (username.length < 2 || username.length > 24) {
+            alert("Your username should be between 2 and 24 symbols long");
+            return false;
+        }
+
+        let forbiddenSymbols = /^(?![._ #($)%^&*""''!@#~`|\\?><,>\/\]\[])(?!.*[._ #($)%^&*""''!@#~`|\\?><,>\/\]\[]$).*/;
+
+        if (!username.match(forbiddenSymbols)) {
+            alert("Your username should start/end with letter or digit")
+            return false;
+        }
+    }
+
+    if (phonenumber) {
+        let bgPhone = /^((0)|(\+359))([\d]{9})$/;
+
+        if (!phonenumber.match(bgPhone)) {
+            alert("Allowed formats of phonenumber: 0XXXXXXXXX , +359XXXXXXXXX");
+            return false;
+        }
+    }
+
+    if (age) {
+        if (age > 100) {
+            alert("Wooo! You must be ancient or there's a typo in your age")
+            return false;
+        }
+
+        let digitPattern = /^\d*$/;
+        if (!age.match(digitPattern)) {
+            alert("Age should consist of digits only")
+            return false;
+        }
+    }
+
+    return true;
 }
