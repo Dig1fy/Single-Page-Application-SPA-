@@ -2,6 +2,8 @@ import Models from '../models/index.js';
 import extend from '../utils/context.js';
 import checkForUser from '../utils/checkForUser.js';
 import db from '../utils/firebase-helper.js'
+import models from '../models/index.js';
+import docModifier from '../utils/idGenerator.js';
 
 export default {
     get: {
@@ -40,6 +42,27 @@ export default {
                             .then(function () {
                                 this.partial('../views/user/profile.hbs');
                             })
+                    })
+            }
+        },
+        myStories(context) {
+            checkForUser(context)
+
+            let user = firebase.auth().currentUser;
+
+            if (user) {
+                context.username = user.displayName;
+
+                models.story.getAll()
+                    .then(response => {
+                        const allStories = response.docs.map(docModifier);
+
+                        let myStories = allStories.filter(x => x.uid === user.uid);
+                        context.myStories = myStories;
+
+                        extend(context).then(function () {
+                            this.partial('../views/user/myStories.hbs')
+                        })
                     })
             }
         }
@@ -118,7 +141,7 @@ export default {
             function updateProfilePicture() {
                 const inputImg = document.querySelector('#input-image');
                 const user = firebase.auth().currentUser;
-                
+
                 //We proceed further only if the user has chosen new profile picture. 
                 if (inputImg.files.length > 0 && user.photoURL !== inputImg.files[0]) {
 

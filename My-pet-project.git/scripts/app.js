@@ -16,6 +16,7 @@ import controllers from '../controllers/index.js'
         this.get('#/user/profile', controllers.user.get.profile)
         this.post('#/user/profile', controllers.user.post.profile)
         this.post('#/user/profile/delete', controllers.user.post.delete)
+        this.get('#/user/stories', controllers.user.get.myStories)
         // this.post('#/user/profile/updateImage', controllers.user.get.updateImage)
         // this.post('#/user/profile/updateImage', controllers.user.post.updateImage)
         
