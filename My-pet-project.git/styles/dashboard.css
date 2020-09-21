@@ -1,54 +1,4 @@
-.home-content {
-    position       : relative;
-    justify-content: center;
-    text-align     : center;
-    /* max-width      : 75%; */
-    /* height         : 115%; */
 
-    margin     : auto;
-    width      : 100%;
-    padding    : 0px;
-}
-
-.home-content-wrapper {
-    margin     : auto;
-    width      : 90%;
-    padding    : 0px;
-}
-
-.head-pic-wrapper {
-    position            : relative;
-    text-align          : center;
-    /* width               : 100%; */
-    height              : 25%;
-    /* background-repeat: no-repeat; */
-    /* z-index          : -1; */
-    /* margin-right     : 125px; */
-}
-
-.head-pic {
-    height    : auto;
-    max-height: 550px;
-    width     : 55%;
-}
-
-.home-page-hidden-text {
-    visibility      : hidden;
-    width           : 120px;
-    background-color: black;
-    color           : #fff;
-    text-align      : center;
-    border-radius   : 6px;
-    padding         : 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index : 1;
-}
-
-.head-pic-wrapper :hover {
-    visibility: visible;
-}
 
 .featurette-heading {
     font-size: 40px;
@@ -94,29 +44,12 @@
 
 }
 
-.stories-section-wrapper h1 {
-    position      : static;
-    /* height     : 825px; */
-    max-height    : 50%;
-    font-family   : 'Allura', cursive;
-    font-size     : 52px;
-    position      : static;
-    text-align    : center;
-    /* margin-left: 350px; */
-}
-
 .stories {
     display        : inline-flex;
-    left           : 50%;
-    top            : 50%;
-    justify-content: center;
-    width          : auto;
-    text-align     : center;
     flex-wrap      : wrap;
-
+    justify-content: center;
 }
 
-/* .stories  */
 .current-story {
     background                : #fff;
     max-height                : 750px;
@@ -127,8 +60,8 @@
     color                     : #8e8b8b;
     position                  : sticky;
     /* border                 : 0.1px double rgba(234, 234, 238, 0.5); */
-    border-top-right-radius   : 2%;
-    border-top-left-radius    : 2%;
+    border-top-right-radius   : 3%;
+    border-top-left-radius    : 3%;
     transition                : ease-in-out 0.5s;
     box-shadow                : inset 10px 55px 21px -5px rgba(130, 143, 125, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
 }
@@ -137,9 +70,6 @@
 .story-paragraph p {
     height          : 210px;
     color           : black;
-    /* white-space  : pre-wrap;
-    overflow        : hidden;
-    text-overflow   : ellipsis; */
     overflow        : hidden;
 }
 
@@ -150,9 +80,6 @@ h2,
 h1,
 h4,
 h5 {
-    /* white-space  : pre-wrap;
-    overflow     : hidden; */
-
     text-overflow: ellipsis;
 }
 
@@ -260,7 +187,7 @@ h5 {
     max-width              : 810px;
     background             : #fff;
     max-height             : 700px;
-    margin                 : 21px;
+    margin                 : 20px;
     padding                : 1px;
     line-height            : 25px;
     color                  : #8e8b8b;
@@ -286,6 +213,7 @@ h5 {
 .stories-no-story-picture {
     height : 65px;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .share-story-btn-wrapper{

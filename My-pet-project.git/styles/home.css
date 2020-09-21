@@ -27,5 +27,72 @@
 
 .story-paragraph p {
     text-shadow: 1px 1px 1px rgb(21, 13, 128);
-    font-size: 16px;
+    font-size  : 16px;
 }
+
+.home-content {
+    position          : relative;
+    justify-content   : center;
+    text-align        : center;
+    /* max-width      : 75%; */
+    /* height         : 115%; */
+
+
+    margin : auto;
+    width  : 100%;
+    padding: 0px;
+
+
+}
+
+.home-content-wrapper {
+    margin: 0 auto;
+    width : 75%;
+
+}
+
+.head-pic-wrapper {
+    position               : relative;
+    /* text-align          : center; */
+    /* margin              : 0 auto; */
+    background             : url("../images/rescued-dog-header.png");
+    background-repeat      : no-repeat;
+    /* Scrolling won't move the image. Nice effect!  */
+    background-attachment  : fixed;
+    background-size        : 100% 100%;
+    height              : 35rem;
+    /* padding-top         : 222px ; */
+    /* width               : 100%; */
+    /* height                 : 1500px; */
+    background-repeat      : no-repeat;
+    /* z-index             : -1; */
+
+    /* padding-top      : 35rem; */
+    /* padding-bottom: -20rem; */
+    /* background-size  : cover; */
+
+}
+
+.head-pic {
+    height    : auto;
+    max-height: 550px;
+    width     : 55%;
+}
+
+.home-page-hidden-text {
+    visibility      : hidden;
+    width           : 120px;
+    background-color: black;
+    color           : #fff;
+    text-align      : center;
+    border-radius   : 6px;
+    padding         : 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index : 1;
+}
+
+/* .head-pic-wrapper :hover {
+    visibility: visible;
+} */
