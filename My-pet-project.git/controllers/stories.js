@@ -2,6 +2,7 @@ import extend from '../utils/context.js';
 import models from '../models/index.js';
 import checkForUser from '../utils/checkForUser.js';
 import docModifier from '../utils/idGenerator.js';
+import validations from '../utils/validations.js'
 
 export default {
     get: {
@@ -61,7 +62,8 @@ export default {
                 })
         },
         edit(context) {
-
+            checkForUser(context)
+            displayUserName(context);
             const { storyId } = context.params;
             context.idFromFirebase = storyId;
 
@@ -100,7 +102,7 @@ export default {
                 images: []
             }
 
-            let result = storyValidation(data)
+            let result = validations.validateStoryData(data)
             if (result !== true) {
                 alert(result);
                 return;
@@ -241,11 +243,11 @@ export default {
                         }
                     }
 
-                    // let isDataValid = storyValidation(storyData)
-                    // if (isDataValid !== true) {
-                    //     alert(isDataValid);
-                    //     return;
-                    // }
+                    let isDataValid = validations.validateStoryData(storyData)
+                    if (isDataValid !== true) {
+                        alert(isDataValid);
+                        return;
+                    }
 
                     models.story.edit(storyId, storyData)
                         .then(
@@ -395,32 +397,32 @@ function listenForUploadedPictures() {
     }
 }
 
-function storyValidation(data) {
-    const title = data.title;
-    const images = data.images;
-    const email = data.email;
-    const phoneNumber = data.phonenumber;
-    const description = data.description;
+// function storyValidation(data) {
+//     const title = data.title;
+//     const images = data.images;
+//     const email = data.email;
+//     const phoneNumber = data.phonenumber;
+//     const description = data.description;
 
-    if (description.length === 0) {
-        return 'Your story description cannot be empty!'
-    }
+//     if (description.length === 0) {
+//         return 'Your story description cannot be empty!'
+//     }
 
-    if (title.length > 65) {
-        return 'Your title cannot exceed 65 symbols!'
-    }
+//     if (title.length > 65) {
+//         return 'Your title cannot exceed 65 symbols!'
+//     }
 
-    if (images.length > 8) {
-        return 'You can upload up to 8 pictures/photos!'
-    }
+//     if (images.length > 8) {
+//         return 'You can upload up to 8 pictures/photos!'
+//     }
 
-    if (email.length > 100) {
-        return 'Your email cannot exceed 100 symbols!'
-    }
+//     if (email.length > 100) {
+//         return 'Your email cannot exceed 100 symbols!'
+//     }
 
-    if (phoneNumber.length > 20) {
-        return 'Your phone number is incorrect!'
-    }
+//     if (phoneNumber.length > 20) {
+//         return 'Your phone number is incorrect!'
+//     }
 
-    return true;
-}
+//     return true;
+// }

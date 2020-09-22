@@ -4,6 +4,7 @@ import checkForUser from '../utils/checkForUser.js';
 import db from '../utils/firebase-helper.js'
 import models from '../models/index.js';
 import docModifier from '../utils/idGenerator.js';
+import validations from '../utils/validations.js'
 
 export default {
     get: {
@@ -84,7 +85,7 @@ export default {
             const { email, password, rePassword } = context.params;
 
             //some input validation
-            let isEmailValid = validateParams(email, undefined, undefined, undefined)
+            let isEmailValid = validations.validateUserData(email, undefined, undefined, undefined)
 
             if (isEmailValid) {
                 if (!email || !password || !rePassword) {
@@ -117,7 +118,7 @@ export default {
             const user = firebase.auth().currentUser;
             const { username, email, phonenumber, age } = context.params;
             const currentUserData = { username, email, phonenumber, age };
-            let areParamsValid = validateParams(email, username, phonenumber, age)
+            let areParamsValid = validations.validateUserData(email, username, phonenumber, age)
 
             if (areParamsValid) {
                 // We also update auth email so we can login with the updated email afterwards
@@ -194,56 +195,56 @@ export default {
     }
 }
 
-function validateParams(email, username, phonenumber, age) {
-    if (email) {
-        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// function validateParams(email, username, phonenumber, age) {
+//     if (email) {
+//         let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-        if (!email.match(mailformat)) {
-            alert("You have entered an invalid email address!");
-            return false;
-        }
+//         if (!email.match(mailformat)) {
+//             alert("You have entered an invalid email address!");
+//             return false;
+//         }
 
-        if (email.length <= 7 || email.length > 60) {
-            alert("Your email should be between 7 and 60 symbols long");
-            return false;
-        }
-    }
+//         if (email.length <= 7 || email.length > 60) {
+//             alert("Your email should be between 7 and 60 symbols long");
+//             return false;
+//         }
+//     }
 
-    if (username) {
-        if (username.length < 2 || username.length > 24) {
-            alert("Your username should be between 2 and 24 symbols long");
-            return false;
-        }
+//     if (username) {
+//         if (username.length < 2 || username.length > 24) {
+//             alert("Your username should be between 2 and 24 symbols long");
+//             return false;
+//         }
 
-        let forbiddenSymbols = /^(?![._ #($)%^&*""''!@#~`|\\?><,>\/\]\[])(?!.*[._ #($)%^&*""''!@#~`|\\?><,>\/\]\[]$).*/;
+//         let forbiddenSymbols = /^(?![._ #($)%^&*""''!@#~`|\\?><,>\/\]\[])(?!.*[._ #($)%^&*""''!@#~`|\\?><,>\/\]\[]$).*/;
 
-        if (!username.match(forbiddenSymbols)) {
-            alert("Your username should start/end with letter or digit")
-            return false;
-        }
-    }
+//         if (!username.match(forbiddenSymbols)) {
+//             alert("Your username should start/end with letter or digit")
+//             return false;
+//         }
+//     }
 
-    if (phonenumber) {
-        let bgPhone = /^((0)|(\+359))([\d]{9})$/;
+//     if (phonenumber) {
+//         let bgPhone = /^((0)|(\+359))([\d]{9})$/;
 
-        if (!phonenumber.match(bgPhone)) {
-            alert("Allowed formats of phonenumber: 0XXXXXXXXX , +359XXXXXXXXX");
-            return false;
-        }
-    }
+//         if (!phonenumber.match(bgPhone)) {
+//             alert("Allowed formats of phonenumber: 0XXXXXXXXX , +359XXXXXXXXX");
+//             return false;
+//         }
+//     }
 
-    if (age) {
-        if (age > 100) {
-            alert("Wooo! You must be ancient or there's a typo in your age")
-            return false;
-        }
+//     if (age) {
+//         if (age > 100) {
+//             alert("Wooo! You must be ancient or there's a typo in your age")
+//             return false;
+//         }
 
-        let digitPattern = /^\d*$/;
-        if (!age.match(digitPattern)) {
-            alert("Age should consist of digits only")
-            return false;
-        }
-    }
+//         let digitPattern = /^\d*$/;
+//         if (!age.match(digitPattern)) {
+//             alert("Age should consist of digits only")
+//             return false;
+//         }
+//     }
 
-    return true;
-}
+//     return true;
+// }
