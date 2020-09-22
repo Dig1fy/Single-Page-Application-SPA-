@@ -221,6 +221,9 @@ export default {
 
                     let storyData = { ...context.params }
 
+                    //The story authorName will be automatically changed according to the user profile (name) 
+                    storyData.authorName = user.displayName;
+                    
                     let uploadedPhotos = document.querySelector('#upload-story-images');
                     let picturesCount = uploadedPhotos.files.length;
 
