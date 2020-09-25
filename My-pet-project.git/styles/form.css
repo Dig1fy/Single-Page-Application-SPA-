@@ -24,23 +24,17 @@
 }
 
 .user-profile-wrapper {
-
-    position   : relative;
-    display    : inline-block;
+   
+    /* position   : relative; */
+    /* display    : inline-block; */
     color      : rgb(216, 212, 221);
-    margin-left: auto;
-
-    margin-right: auto;
+    margin: 0 auto;
     margin-top  : 20px;
     text-align  : center;
 
-    width        : fit-content;
-    min-height   : fit-content;
-    height       : fit-content;
     max-width    : 550px;
     border-radius: 16px;
     padding      : 1px 25px 25px 24px;
-
 
     background: -webkit-linear-gradient(bottom, #6e5518, #883022, rgb(68, 68, 90));
 }

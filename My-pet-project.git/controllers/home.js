@@ -28,7 +28,23 @@ export default {
                         this.partial('../views/home/home.hbs');
                     })
                 })
+        },
+
+        contactUs(context){
+            checkForUser(context)
+            displayUserName(context)
+
+            extend(context).then(function () {
+                this.partial('../views/home/contactUs.hbs');
+            })
         }
+    },
+
+    post:{
+       contactUs(context){
+       
+       }
+        
     }
 }
 

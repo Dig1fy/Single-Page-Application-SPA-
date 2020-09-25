@@ -183,7 +183,7 @@ h5 {
 .current-story-dashboard {
     position               : relative;
     width                  : 34%;
-    min-width              : 650px;
+    min-width              : 350px;
     max-width              : 810px;
     background             : #fff;
     max-height             : 700px;

@@ -37,6 +37,10 @@ import controllers from '../controllers/index.js'
         //edit a story
         this.get('#/story/edit/:storyId', controllers.stories.get.edit)
         this.post('#/story/edit/:storyId', controllers.stories.put.edit)
+
+        //Contact us form - email sender
+        this.get('#/contactUs', controllers.home.get.contactUs)
+        this.post('#/contactUs', controllers.home.post.contactUs)
     })
     
     
