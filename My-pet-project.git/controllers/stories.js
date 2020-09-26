@@ -131,7 +131,7 @@ export default {
 
                     //Check if the current user has already liked the story. If yes, he cannot like it again, otherwise, add him in the list of people who have liked the story and adjust the like's count
                     let currentPersonId = firebase.auth().currentUser.uid;
-
+                    
                     //If someone has already liked a story, we note that to the context and the take control over the rendering in the handlebar templates.
                     if (story.peopleWhoHaveLiked.some(x => x === currentPersonId)) {
                         context.hasLiked = true;
@@ -139,9 +139,11 @@ export default {
                     } else {
                         story.likes += 1;
                         story.peopleWhoHaveLiked.push(currentPersonId)
-
-                        let likes = document.querySelector("#details-likes");
-                        likes.textContent++;
+                        
+                        let likesRef = document.querySelector("#details-likes");
+                        
+                        likesRef.textContent = story.likes + "likes";
+                        
                         return models.story.edit(storyId, story);
                     }
                 })
@@ -170,8 +172,9 @@ export default {
 
                         story.comments.push(newComment)
                         context.comments = story.comments;
+                        let numberOfComments = story.comments;                       
 
-                        renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment)
+                        renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments)
                         return models.story.edit(storyId, story);
                     })
             } else {
@@ -275,13 +278,13 @@ function distinguishAuthorsStories(context) {
 }
 
 //Adding the new comment dynamically using the DOM manipulation
-function renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment) {
-
+function renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments) {
+console.log(numberOfComments);
     if (comment.length > 0) {
         let parentEl = document.querySelector('#comments-pic-info');
         let inputTextRef = document.querySelector("#story-comment");
 
-        let sss = `<div class="entire-comment-wrapper">
+        let newComment = `<div class="entire-comment-wrapper">
         <div class="comment-info">
           <div class="comment-photo">
             <img class="comment-photo" src="${currentUserPicture}" alt="">
@@ -297,7 +300,7 @@ function renderCommentsOnClientSide(currentUserName, currentUserPicture, current
         </div>
       </div>`
 
-        parentEl.innerHTML += sss;
+        parentEl.innerHTML += newComment;
         inputTextRef.value = "";
     }
 }

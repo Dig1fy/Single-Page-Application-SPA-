@@ -53,7 +53,7 @@
     max-height                : 750px;
     margin                    : 10px;
     width                     : 435px;
-    padding                   : 30px;
+    padding                   : 15px;
     line-height               : 25px;
     color                     : #8e8b8b;
     position                  : sticky;
@@ -62,6 +62,7 @@
     border-top-left-radius    : 3%;
     transition                : ease-in-out 0.5s;
     box-shadow                : inset 10px 55px 21px -5px rgba(130, 143, 125, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
+    
 }
 
 /* Prevents the text from going outside the box */
@@ -153,6 +154,7 @@ h5 {
 .story-paragraph {
     text-align: left;
     color     : #837979;
+    /* padding: 5px; */
 
 }
 
@@ -186,7 +188,7 @@ h5 {
     background             : #fff;
     max-height             : 700px;
     margin                 : 20px;
-    padding                : 1px;
+    padding                : 16px;
     line-height            : 25px;
     color                  : #8e8b8b;
     position               : sticky;
@@ -220,8 +222,8 @@ h5 {
 
 .authors-story-dot {
     position     : absolute;
-    width        : 20px;
-    height       : 20px;
+    width        : 10px;
+    height       : 10px;
     background-color: rgb(61, 95, 9);
     display      : inline-block;
     border-radius: 50%;
