@@ -12,12 +12,14 @@ export default {
             displayUserName(context);
 
             models.story.getAll().then((response) => {
-                //Тази простотия идва от firebase документацията. Първоначално връща един смахнат обект с много пропъртита. Трябва да му дадем "docs", да минем през всеки запис и да му дадем ".data", което реално е нашият обект от firebase. (т.е. response.docs.foreach(x=>x.data))
+                //Firebase returns weird object with a lot of properties. We need to go through each of them ->response.docs.foreach(x=>x.data)
 
                 //This is where we attach id to to each story (the id itself comes from Firebase)
                 const allStories = response.docs.map(docModifier)
 
                 context.stories = allStories;
+                distinguishAuthorsStories(context)
+
                 extend(context).then(function () {
                     this.partial('../views/sections/stories.hbs')
                 })
@@ -223,7 +225,7 @@ export default {
 
                     //The story authorName will be automatically changed according to the user profile (name) 
                     storyData.authorName = user.displayName;
-                    
+
                     let uploadedPhotos = document.querySelector('#upload-story-images');
                     let picturesCount = uploadedPhotos.files.length;
 
@@ -263,6 +265,13 @@ export default {
                 })
         }
     }
+}
+
+function distinguishAuthorsStories(context) {
+    context.stories.forEach(story => {
+        //We check if the current user is the author of the story.
+        story.isAuthor = story.uid === context.userId
+    });
 }
 
 //Adding the new comment dynamically using the DOM manipulation

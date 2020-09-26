@@ -14,7 +14,6 @@
         progress: document.querySelector("#progress"),
         exitBtn: document.querySelector('.exit-quiz-wrapper'),
         backBtn: document.querySelector("#container > div.backward-btn-wrapper"),
-        progress: document.querySelector("#progress"),
         progressLoaderRef: document.querySelector('.progress-load')
     }
 

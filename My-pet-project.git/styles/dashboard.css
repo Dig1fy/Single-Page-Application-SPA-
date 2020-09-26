@@ -1,5 +1,3 @@
-
-
 .featurette-heading {
     font-size: 40px;
     position : sticky;
@@ -68,9 +66,9 @@
 
 /* Prevents the text from going outside the box */
 .story-paragraph p {
-    height          : 210px;
-    color           : black;
-    overflow        : hidden;
+    height  : 210px;
+    color   : black;
+    overflow: hidden;
 }
 
 /* To make sure that longer titles/texts won't go outside the box  */
@@ -213,9 +211,20 @@ h5 {
 .stories-no-story-picture {
     height : 65px;
     padding: 20px;
+    margin : 0 auto;
+}
+
+.share-story-btn-wrapper {
     margin: 0 auto;
 }
 
-.share-story-btn-wrapper{
-    margin: 0 auto;
+.authors-story-dot {
+    position     : absolute;
+    width        : 20px;
+    height       : 20px;
+    background-color: rgb(61, 95, 9);
+    display      : inline-block;
+    border-radius: 50%;
+    right        : 3px;
+    bottom       : 3px;
 }
