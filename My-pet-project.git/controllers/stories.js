@@ -16,12 +16,12 @@ export default {
 
                 //This is where we attach id to to each story (the id itself comes from Firebase)
                 const allStories = response.docs.map(docModifier)
-
                 context.stories = allStories;
                 distinguishAuthorsStories(context)
 
                 extend(context).then(function () {
                     this.partial('../views/sections/stories.hbs')
+                        .then(x => orderStoriesByUserChoice(allStories))
                 })
             })
 
@@ -131,7 +131,7 @@ export default {
 
                     //Check if the current user has already liked the story. If yes, he cannot like it again, otherwise, add him in the list of people who have liked the story and adjust the like's count
                     let currentPersonId = firebase.auth().currentUser.uid;
-                    
+
                     //If someone has already liked a story, we note that to the context and the take control over the rendering in the handlebar templates.
                     if (story.peopleWhoHaveLiked.some(x => x === currentPersonId)) {
                         context.hasLiked = true;
@@ -139,11 +139,11 @@ export default {
                     } else {
                         story.likes += 1;
                         story.peopleWhoHaveLiked.push(currentPersonId)
-                        
+
                         let likesRef = document.querySelector("#details-likes");
-                        
+
                         likesRef.textContent = story.likes + "likes";
-                        
+
                         return models.story.edit(storyId, story);
                     }
                 })
@@ -170,7 +170,7 @@ export default {
 
                         story.comments.push(newComment)
                         context.comments = story.comments;
-                        let numberOfComments = story.comments.length;                       
+                        let numberOfComments = story.comments.length;
 
                         renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments)
                         return models.story.edit(storyId, story);
@@ -268,6 +268,29 @@ export default {
     }
 }
 
+function orderStoriesByUserChoice(stories) {
+
+    /*
+    * Sort the stories by description's length (Descending)
+    */
+    let longestDescription = document.querySelector('.longest-description')
+    longestDescription.addEventListener('click', function (e) {
+        let parent = document.querySelectorAll('.current-story-dashboard')
+        let storiesWrapperRef = document.querySelector('.stories')
+
+        var arr = Array.from(parent).sort(function (a, b) {
+            let x = a.querySelector('div.story-paragraph > p');
+            let y = b.querySelector('div.story-paragraph > p');
+
+            return a.textContent.length > b.textContent.length ? -1 : 1;
+        });
+
+        arr.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+}
+
 function distinguishAuthorsStories(context) {
     context.stories.forEach(story => {
         //We check if the current user is the author of the story.
@@ -277,13 +300,13 @@ function distinguishAuthorsStories(context) {
 
 //Adding the new comment dynamically using the DOM manipulation
 function renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments) {
-    
+
     if (comment.length > 0) {
         let parentEl = document.querySelector('#comments-pic-info');
         let inputTextRef = document.querySelector("#story-comment");
         let storyComments = document.querySelector('#show-hide-comments-btn');
-        storyComments.textContent = `${numberOfComments} comments`; 
-        
+        storyComments.textContent = `${numberOfComments} comments`;
+
         let newComment = `<div class="entire-comment-wrapper">
         <div class="comment-info">
           <div class="comment-photo">

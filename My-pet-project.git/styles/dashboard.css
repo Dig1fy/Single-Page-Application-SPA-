@@ -53,7 +53,7 @@
     max-height                : 750px;
     margin                    : 10px;
     width                     : 435px;
-    padding                   : 15px;
+    padding                   : 10px;
     line-height               : 25px;
     color                     : #8e8b8b;
     position                  : sticky;
@@ -229,4 +229,11 @@ h5 {
     border-radius: 50%;
     right        : 18px;
     bottom       : 2px;
+}
+
+.stories-dropdown-btn-wrapper{
+    position: absolute;
+    width: 31%;
+    margin: 0 auto;
+    left: 0px;
 }
