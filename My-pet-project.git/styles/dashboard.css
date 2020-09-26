@@ -227,6 +227,6 @@ h5 {
     background-color: rgb(61, 95, 9);
     display      : inline-block;
     border-radius: 50%;
-    right        : 3px;
-    bottom       : 3px;
+    right        : 18px;
+    bottom       : 2px;
 }

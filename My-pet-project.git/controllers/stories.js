@@ -150,8 +150,6 @@ export default {
         },
 
         comments(context) {
-            //TODO
-            // IMPLEMENT THE LOGIC - add comments/replies
             checkForUser(context);
             const { comment, storyId } = context.params;
 
@@ -172,7 +170,7 @@ export default {
 
                         story.comments.push(newComment)
                         context.comments = story.comments;
-                        let numberOfComments = story.comments;                       
+                        let numberOfComments = story.comments.length;                       
 
                         renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments)
                         return models.story.edit(storyId, story);
@@ -279,11 +277,13 @@ function distinguishAuthorsStories(context) {
 
 //Adding the new comment dynamically using the DOM manipulation
 function renderCommentsOnClientSide(currentUserName, currentUserPicture, currentDate, comment, numberOfComments) {
-console.log(numberOfComments);
+    
     if (comment.length > 0) {
         let parentEl = document.querySelector('#comments-pic-info');
         let inputTextRef = document.querySelector("#story-comment");
-
+        let storyComments = document.querySelector('#show-hide-comments-btn');
+        storyComments.textContent = `${numberOfComments} comments`; 
+        
         let newComment = `<div class="entire-comment-wrapper">
         <div class="comment-info">
           <div class="comment-photo">
