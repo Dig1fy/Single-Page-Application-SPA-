@@ -34,7 +34,7 @@
 
 .stories-section-wrapper {
     position   : static;
-    padding-top: 2%;
+    /* padding-top: 2%; */
     text-align : center;
 
     position  : static;
@@ -236,4 +236,5 @@ h5 {
     width: 31%;
     margin: 0 auto;
     left: 0px;
+    margin-top: -65px;
 }

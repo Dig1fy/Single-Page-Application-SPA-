@@ -11,6 +11,8 @@ export default {
             checkForUser(context)
             displayUserName(context);
 
+
+
             models.story.getAll().then((response) => {
                 //Firebase returns weird object with a lot of properties. We need to go through each of them ->response.docs.foreach(x=>x.data)
 
@@ -21,7 +23,7 @@ export default {
 
                 extend(context).then(function () {
                     this.partial('../views/sections/stories.hbs')
-                        .then(x => orderStoriesByUserChoice(allStories))
+                        .then(x => orderStoriesByUserChoice())
                 })
             })
 
@@ -53,8 +55,8 @@ export default {
 
                     //We check if the current user is the author of the story.
                     context.isAuthor = story.uid === context.userId;
-
                     context.comments = story.comments;
+
 
                     extend(context)
                         .then(function () {
@@ -101,7 +103,8 @@ export default {
                 likes: 0,
                 mainPicture: {},
                 comments: [],
-                images: []
+                images: [],
+                publishDate: getCurrentDateTime()
             }
 
             let result = validations.validateStoryData(data)
@@ -268,27 +271,70 @@ export default {
     }
 }
 
-function orderStoriesByUserChoice(stories) {
+function orderStoriesByUserChoice() {
+    let allStories = document.querySelectorAll('.current-story-dashboard')
+    let storiesWrapperRef = document.querySelector('.stories')
+    var storiesArray = Array.from(allStories);
 
     /*
     * Sort the stories by description's length (Descending)
     */
-    let longestDescription = document.querySelector('.longest-description')
-    longestDescription.addEventListener('click', function (e) {
-        let parent = document.querySelectorAll('.current-story-dashboard')
-        let storiesWrapperRef = document.querySelector('.stories')
+    let longestDescriptionRef = document.querySelector('.order-by-description-desc')
+    longestDescriptionRef.addEventListener('click', function (e) {
 
-        var arr = Array.from(parent).sort(function (a, b) {
+        storiesArray.sort(function (a, b) {
             let x = a.querySelector('div.story-paragraph > p');
             let y = b.querySelector('div.story-paragraph > p');
 
             return a.textContent.length > b.textContent.length ? -1 : 1;
         });
 
-        arr.forEach(function (c) {
+        storiesArray.forEach(function (c) {
             storiesWrapperRef.appendChild(c)
         })
     })
+
+    /*
+    * Sort the stories by description's length (ascending)
+    */
+    let orderByShortestDescriptionRef = document.querySelector('.order-by-description-asc');
+    orderByShortestDescriptionRef.addEventListener('click', function (e) {
+
+        storiesArray.sort(function (a, b) {
+            let x = a.querySelector('div.story-paragraph > p');
+            let y = b.querySelector('div.story-paragraph > p');
+
+            return a.textContent.length > b.textContent.length ? 1 : -1;
+        });
+
+        storiesArray.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+
+    /*
+    * Sort the stories by date (ascending)
+    */
+    let orderByDateAscRef = document.querySelector('.order-by-date-asc');
+    orderByDateAscRef.addEventListener('click', function (e) {
+
+        storiesArray.sort(function (storyA, storyB) {
+            //accessing the story's publish date. (on the dashboard, the style for display is 'none' for each story)
+            let firstDateAsString = storyA.querySelector('.story-publish-date').textContent;
+            let secondDateAsString = storyB.querySelector('.story-publish-date').textContent;
+
+            let dateX = new Date(firstDateAsString);
+            let dateY = new Date(secondDateAsString);
+            return dateX > dateY ? 1 : -1
+        })
+
+        storiesArray.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+
+
+    //TODO : Add sorting by date(asc/desc), likes (asc/desc),  remove stories without a picture
 }
 
 function distinguishAuthorsStories(context) {
@@ -331,14 +377,25 @@ function renderCommentsOnClientSide(currentUserName, currentUserPicture, current
 function getCurrentDateTime() {
     let now = new Date();
 
+    //We use slice(-2) to take last 2 symbols. This way, we will always have leading zero when < 10. 
+    // 009 -> 09 , 0015 -> 15, 000 -> 00 etc...
     let year = now.getFullYear();
-    let month = now.getMonth() + 1;
-    let day = now.getDate();
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-    let second = now.getSeconds();
+    let month = ("00" + (now.getMonth() + 1)).slice(-2)
+    let day = ("00" + now.getDate()).slice(-2);
+    let hour = ('00' + now.getHours()).slice(-2);
+    let minute = ('00' + now.getMinutes()).slice(-2);
+    let second = ('00' + now.getSeconds()).slice(-2);
 
-    let currentDate = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+    //Second approach
+    // let hour = now.getHours();
+    // let minute = now.getMinutes();
+    // let second = now.getSeconds();
+    //Check if hour/minute/seconds < 10 and add 0 before
+    // second = second < 10 ? "0" + second : second;
+    // hour = hour < 10 ? "0" + hour : hour;
+    // minute = minute < 10 ? "0" + minute : minute;
+
+    let currentDate = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
     return currentDate;
 }
 
@@ -434,33 +491,3 @@ function listenForUploadedPictures() {
         }
     }
 }
-
-// function storyValidation(data) {
-//     const title = data.title;
-//     const images = data.images;
-//     const email = data.email;
-//     const phoneNumber = data.phonenumber;
-//     const description = data.description;
-
-//     if (description.length === 0) {
-//         return 'Your story description cannot be empty!'
-//     }
-
-//     if (title.length > 65) {
-//         return 'Your title cannot exceed 65 symbols!'
-//     }
-
-//     if (images.length > 8) {
-//         return 'You can upload up to 8 pictures/photos!'
-//     }
-
-//     if (email.length > 100) {
-//         return 'Your email cannot exceed 100 symbols!'
-//     }
-
-//     if (phoneNumber.length > 20) {
-//         return 'Your phone number is incorrect!'
-//     }
-
-//     return true;
-// }
