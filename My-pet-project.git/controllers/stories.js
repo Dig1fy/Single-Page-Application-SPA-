@@ -333,8 +333,74 @@ function orderStoriesByUserChoice() {
         })
     })
 
+    /*
+     * Sort the stories by date (descending)
+     */
+    let orderByDateDescRef = document.querySelector('.order-by-date-desc');
+    orderByDateDescRef.addEventListener('click', function (e) {
 
-    //TODO : Add sorting by date(asc/desc), likes (asc/desc),  remove stories without a picture
+        storiesArray.sort(function (storyA, storyB) {
+            //accessing the story's publish date. (on the dashboard, the style for display is 'none' for each story)
+            let firstDateAsString = storyA.querySelector('.story-publish-date').textContent;
+            let secondDateAsString = storyB.querySelector('.story-publish-date').textContent;
+
+            let dateX = new Date(firstDateAsString);
+            let dateY = new Date(secondDateAsString);
+            return dateX > dateY ? -1 : 1
+        })
+
+        storiesArray.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+
+    /*
+     * Sort the stories by likes (asc)
+     */
+    let orderByLikesAscRef = document.querySelector('.order-by-likes-asc');
+    orderByLikesAscRef.addEventListener('click', function (e) {
+
+        storiesArray.sort(function (a, b) {
+            let first = Number(a.querySelector('div #details-likes').textContent);
+            let sec = Number(b.querySelector('div #details-likes').textContent);
+            
+            if (first > sec) {
+                return 1;
+            } else if (first < sec) {
+                return -1;
+            } else
+                return 0
+        })
+
+        storiesArray.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+
+    /*
+     * Sort the stories by likes (desc)
+     */
+    let orderByLikesDescRef = document.querySelector('.order-by-likes-desc');
+    orderByLikesDescRef.addEventListener('click', function (e) {
+
+        storiesArray.sort(function (a, b) {
+            let first = Number(a.querySelector('div #details-likes').textContent);
+            let sec = Number(b.querySelector('div #details-likes').textContent);
+            
+            if (first > sec) {
+                return -1;
+            } else if (first < sec) {
+                return 1;
+            } else
+                return 0           
+        })
+
+        storiesArray.forEach(function (c) {
+            storiesWrapperRef.appendChild(c)
+        })
+    })
+
+    //TODO : Add sorting by likes (asc/desc),  remove stories without a picture
 }
 
 function distinguishAuthorsStories(context) {

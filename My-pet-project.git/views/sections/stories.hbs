@@ -14,6 +14,9 @@
     <a class = "order-by-description-desc">Order by description (descending)</a>
     <a class = "order-by-description-asc">Order by description (asceding)</a>
     <a class = "order-by-date-asc">Order by date (asceding)</a>
+    <a class = "order-by-date-desc">Order by date (descending)</a>
+    <a class = "order-by-likes-asc">Order by likes (asceding)</a>
+    <a class = "order-by-likes-desc">Order by likes (descending)</a>
     <a href="">Logout</a>
   </div>
 </div>
@@ -43,6 +46,9 @@
         <p>{{description}}</p>
       </div>
       <div class="see-the-whole-story-wrapper">
+        {{!-- <div class="details-likes-wrapper"> --}}
+              <p id="details-likes" style="display: none;">{{likes}}</p>
+            {{!-- </div> --}}
         <a href="#/story/details/{{idFromFirebase}}" class="see-the-whole-story">See the whole story</a>
         {{#if isAuthor}}
         <div class="authors-story-dot" style="display: block;"></div>
