@@ -103,6 +103,8 @@
     z-index : 1;
 }
 
-/* .head-pic-wrapper :hover {
-    visibility: visible;
+/* .home-story-images-render {
+    height    : 150px;
+    width     : 150px;
+    box-sizing: border-box;
 } */

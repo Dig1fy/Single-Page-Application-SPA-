@@ -140,6 +140,8 @@
     /* 400% zoom on click, transforming from top to bottom */
     transform       : scale(4);
     transform-origin: top;
+    position: fixed;
+    z-index: 1;
 }
 
 .story-image-render:hover {

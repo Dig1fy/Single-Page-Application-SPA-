@@ -33,9 +33,9 @@
  */
 
 .stories-section-wrapper {
-    position   : static;
+    position      : static;
     /* padding-top: 2%; */
-    text-align : center;
+    text-align    : center;
 
     position  : static;
     max-height: 50%;
@@ -53,7 +53,7 @@
     max-height                : 750px;
     margin                    : 10px;
     width                     : 435px;
-    padding                   : 10px;
+    padding-top               : 20px;
     line-height               : 25px;
     color                     : #8e8b8b;
     position                  : sticky;
@@ -62,7 +62,7 @@
     border-top-left-radius    : 3%;
     transition                : ease-in-out 0.5s;
     box-shadow                : inset 10px 55px 21px -5px rgba(130, 143, 125, 0.2), 8px 8px 15px 1px rgb(69, 71, 87);
-    
+
 }
 
 /* Prevents the text from going outside the box */
@@ -93,13 +93,6 @@ h5 {
     z-index: 1;
 }
 
-
-
-/* prevents the image from going outside the container  */
-.rescued-animal-img-wrapper {
-    overflow: hidden;
-}
-
 /* .stories  */
 .current-story h3 {
     position  : relative;
@@ -127,22 +120,22 @@ h5 {
 /* current story - image container  */
 /* .stories .current-story  */
 .rescued-animal-img-wrapper {
-    position     : absolute;
-    top          : -75px;
-    left         : 50%;
-    transform    : translateX(-50%);
-    width        : 200px;
-    height       : 140px;
-    border-radius: 50%;
+    position        : absolute;
+    /* top          : -75px; */
+    top             : -4.5rem;
+    left            : 50%;
+    transform       : translateX(-50%);
+    width           : 200px;
+    height          : 140px;
+    overflow        : hidden;
+    border-radius   : 50%;
 }
 
 /* image should be withing the container size  */
 .stories .current-story .rescued-animal-img-wrapper img {
     width     : 200px;
     height    : 140px;
-    /* For smooth transition when scaling */
-    transition: transform .5s, filter 0.5s ease-in-out;
-    filter    : grayscale(0);
+    transition: transform .5s, filter 1s ease-in-out;
 }
 
 /* Hover the entire story container and the image will scale  */
@@ -154,8 +147,6 @@ h5 {
 .story-paragraph {
     text-align: left;
     color     : #837979;
-    /* padding: 5px; */
-
 }
 
 .stories,
@@ -188,7 +179,7 @@ h5 {
     background             : #fff;
     max-height             : 700px;
     margin                 : 20px;
-    padding                : 16px;
+    padding                : 5px;
     line-height            : 25px;
     color                  : #8e8b8b;
     position               : sticky;
@@ -221,20 +212,78 @@ h5 {
 }
 
 .authors-story-dot {
-    position     : absolute;
-    width        : 10px;
-    height       : 10px;
+    position        : absolute;
+    width           : 10px;
+    height          : 10px;
     background-color: rgb(61, 95, 9);
-    display      : inline-block;
-    border-radius: 50%;
-    right        : 18px;
-    bottom       : 2px;
+    display         : inline-block;
+    border-radius   : 50%;
+    right           : 18px;
+    bottom          : 2px;
 }
 
-.stories-dropdown-btn-wrapper{
-    position: absolute;
-    width: 31%;
-    margin: 0 auto;
-    left: 0px;
-    margin-top: -65px;
+.stories-dropdown-btn-wrapper {
+    position  : relative;
+    width     : 31%;
+    /* margin    : 0 auto; */
+    /* left      : 0; */
+    top: -8.4rem;
+    /* margin-top: -65px; */
+}
+
+
+/*
+ * Stories (dashboard) Dropdown choices 
+ */
+.story-option-dropbtn {
+    height          : 25px;
+    width           : 180px;
+    position        : absolute;
+    /* top             : 0;
+    left            : 120px; */
+    box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    color           : rgb(5, 49, 49);
+    background-color: aliceblue;
+    border          : 0;
+
+}
+
+.story-option-dropdown-content {
+    margin-top      : 8rem;
+    display         : none;
+    position        : relative;
+    background-color: #f9f9f9;
+    width           : 230px;
+    box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index         : 1;
+}
+
+/* Dropdown choices */
+.story-option-dropdown-content a {
+    float           : none;
+    color           : black;
+    padding         : 10px 15px 10px 15px;
+    text-decoration : none;
+    transition      : 0.6s;
+    display         : block;
+    text-align      : left;
+    font-size       : 15px;
+    background-color: aliceblue;
+
+}
+
+.story-option-dropdown-content a:hover {
+    background-color: rgb(214, 228, 240);
+    transition      : 0.1s;
+    border-radius   : 5%;
+    color           : #303129;
+    font-weight     : bold;
+    cursor          : pointer;
+}
+
+.stories-dropdown-btn-wrapper:hover .story-option-dropdown-content {
+    position           : fixed;
+    display            : block;
+    /* transform       : scale(1);
+    transform-origin   : bottom; */
 }
