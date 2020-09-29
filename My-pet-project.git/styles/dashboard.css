@@ -6,7 +6,6 @@
     text-align   : center;
     text-shadow  : 2.1px 2px 2px rgb(0, 34, 17);
     opacity      : 0.3;
-    /* background: -webkit-linear-gradient(bottom, #79e7a4, #392abb, rgb(441,112,4145)); */
 }
 
 .featurette-heading,
@@ -15,18 +14,12 @@
     text-shadow               : 2.1px 2px 2px rgb(1, 1, 231);
     background-image          : linear-gradient(left, rgb(105, 105, 238), rgb(43, 161, 43), rgb(71, 71, 51), rgb(47, 98, 207), rgb(6, 34, 8));
     -webkit-text-fill-color   : transparent;
-    /* -webkit-background-clip: text; */
 }
 
 .new-article {
     padding-top: 100px;
     margin-top : 100%;
 }
-
-
-
-
-
 
 /* 
  *   SECTION - STORIES  
@@ -57,7 +50,6 @@
     line-height               : 25px;
     color                     : #8e8b8b;
     position                  : sticky;
-    /* border                 : 0.1px double rgba(234, 234, 238, 0.5); */
     border-top-right-radius   : 3%;
     border-top-left-radius    : 3%;
     transition                : ease-in-out 0.5s;
@@ -147,7 +139,7 @@ h5 {
 .story-paragraph {
     text-align: left;
     color     : #837979;
-    padding: 5px;
+    padding   : 5px;
 }
 
 .stories,
@@ -197,8 +189,7 @@ h5 {
     transition      : ease 0.5s;
     box-shadow      : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
     transform       : scale(1.1);
-    transition      : ease-in-out 0.4s;
-
+    transition      : ease-in-out 0.5s;
     z-index: 1;
 }
 
@@ -219,34 +210,41 @@ h5 {
     bottom          : 2px;
 }
 
+/*
+* Stories (dashboard) Dropdown choices 
+*/
+
 .stories-dropdown-btn-wrapper {
-    position  : relative;
-    width     : 31%;
-    /* margin    : 0 auto; */
-    /* left      : 0; */
-    top: -8.4rem;
-    /* margin-top: -65px; */
+    position: relative;
+    display : inline-block;
+    margin  : 0 auto;
 }
 
+.stories-top-section {
+    width : 70%;
+    margin: 0 auto;
+}
 
-/*
- * Stories (dashboard) Dropdown choices 
- */
 .story-option-dropbtn {
-    height          : 25px;
-    width           : 180px;
-    position        : absolute;
-    /* top             : 0;
-    left            : 120px; */
+    position        : relative;
+    left            : 0;
+    top             : 0;
     box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     color           : rgb(5, 49, 49);
     background-color: aliceblue;
     border          : 0;
 
+    background-color   : rgb(240, 237, 205);
+    text-shadow        : 1px 1px 1px rgb(21, 13, 128);
+    text-decoration : none;
+    border-radius: 7%;
+
+    height   : 36px;
+    width    : 230px;
+    font-size: 17px;
 }
 
 .story-option-dropdown-content {
-    margin-top      : 10.7rem;
     display         : none;
     position        : relative;
     background-color: #f9f9f9;
@@ -281,6 +279,10 @@ h5 {
 .stories-dropdown-btn-wrapper:hover .story-option-dropdown-content {
     position           : fixed;
     display            : block;
-    /* transform       : scale(1);
-    transform-origin   : bottom; */
+}
+
+.stories-dropdown-container {
+    height  : 100px;
+    position: relative;
+    margin  : 0 auto;
 }
