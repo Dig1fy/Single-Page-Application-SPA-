@@ -2,36 +2,6 @@
     margin-top: 100px;
 }
 
-.see-the-whole-story-wrapper {
-    position: absolute;
-    z-index: 1;
-    
-    margin     : auto;
-    width      : 100%;
-    bottom: 0;
-    text-shadow: 1px 1px 1px rgb(21, 13, 128);
-}
-
-.see-the-whole-story {
-    text-decoration: rgb(185, 185, 11);
-}
-
-.see-the-whole-story:hover {
-    font-weight     : bold;
-    transform-origin: bottom;
-    box-shadow      : inset 10px 70px 21px -5px rgba(69, 99, 68, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
-    transform       : scale(1.1);
-    transition      : ease-in-out 0.2s;
-
-    border                 : 0.1px double rgba(234, 234, 238, 0.5);
-    border-top-right-radius: 5%;
-    border-top-left-radius : 5%;
-}
-
-.see-the-whole-story{
-    /* margin-bottom: -20px; */
-}
-
 .story-paragraph p {
     text-shadow: 1px 1px 1px rgb(21, 13, 128);
     font-size  : 16px;

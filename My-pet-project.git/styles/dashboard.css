@@ -60,7 +60,7 @@
 /* Prevents the text from going outside the box */
 .story-paragraph p {
     height  : 210px;
-    color   : black;
+    /* color   : black; */
     overflow: hidden;
 }
 
@@ -76,7 +76,7 @@ h5 {
 
 /* changing the color of the story content only  */
 .stories .current-story:hover {
-    background-color   : rgb(14, 121, 124);
+    background-color: rgb(41, 100, 102);
     /* transition      : ease 0.5s; */
     box-shadow         : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
     transform          : scale(1.1);
@@ -185,12 +185,16 @@ h5 {
 
 .current-story-dashboard:hover {
     color           : rgb(202, 202, 209);
-    background-color: rgb(14, 121, 124);
+    background-color: rgb(41, 100, 102);
     transition      : ease 0.5s;
     box-shadow      : inset 10px 70px 21px -5px rgba(50, 65, 49, 0.2), 29px 25px 15px 1px rgb(69, 71, 87);
     transform       : scale(1.1);
     transition      : ease-in-out 0.5s;
     z-index: 1;
+}
+
+.current-story-dashboard .story-paragraph{
+    padding-bottom: 25px;
 }
 
 .stories-no-story-picture {
@@ -206,7 +210,7 @@ h5 {
     background-color: rgb(61, 95, 9);
     display         : inline-block;
     border-radius   : 50%;
-    right           : 18px;
+    right           : 8px;
     bottom          : 2px;
 }
 
@@ -277,7 +281,7 @@ h5 {
 }
 
 .stories-dropdown-btn-wrapper:hover .story-option-dropdown-content {
-    position           : fixed;
+    position           : absolute;
     display            : block;
 }
 

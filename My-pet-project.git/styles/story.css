@@ -11,15 +11,17 @@
 }
 
 .story-background-image {
-    background-image      : url('../images/new-story-img/dog.png');
-    min-height            : max-content;
-    height                : 902px;
+    background-image         : url('../images/new-story-img/dog.png');
+    height                   : 1024px;
+    width                    : 100%;
+    min-width                : 510px;
+
     /* Center and scale the image nicely */
-    background-position   : center;
-    background-repeat     : no-repeat;
-    background-size       : cover;
-    position              : relative;
-    /* position           : relative; */
+    background-repeat        : no-repeat;
+    background-size          : cover;
+    position                 : relative;
+    background-size          : cover;
+    /* position              : relative; */
 }
 
 .new-story-title,
@@ -119,7 +121,7 @@
 
 .label-upload-img {
     text-transform: initial;
-    font-size: 16px;
+    font-size     : 16px;
 }
 
 .upload-pic {
@@ -140,8 +142,8 @@
     /* 400% zoom on click, transforming from top to bottom */
     transform       : scale(4);
     transform-origin: top;
-    position: fixed;
-    z-index: 1;
+    position        : fixed;
+    z-index         : 1;
 }
 
 .story-image-render:hover {
@@ -161,8 +163,8 @@
 }
 
 .story-comment-content {
-    text-shadow        : 1px 1px 1px rgb(5, 32, 14);
-    font-size: 16px;
+    text-shadow: 1px 1px 1px rgb(1, 22, 7);
+    font-size  : 16px;
 }
 
 .entire-comment-wrapper {
@@ -176,20 +178,20 @@
 }
 
 .story-comment-wrapper {
-    width                    : 550px;
-    height                   : fit-content;
-    border-style             : groove;
-    margin                   : 0 auto;
-    border-radius            : 2%;
-/* Prevents the text from going outside the div      */
-    word-wrap                : break-word;
-    text-align               : left;
+    width        : 550px;
+    height       : fit-content;
+    border-style : groove;
+    margin       : 0 auto;
+    border-radius: 2%;
+    /* Prevents the text from going outside the div      */
+    word-wrap    : break-word;
+    text-align   : left;
 }
 
 .story-comment-userInfo {
-    display: inline-flex;
+    display  : inline-flex;
     font-size: 16px;
-    color: #032e2a;
+    color    : #032e2a;
 }
 
 .story-comment-userInfo-wrapper {
@@ -198,4 +200,65 @@
 
 .story-comment-datetime {
     font-size: 13px;
+}
+
+.story-comment-textarea {
+    text-shadow: 1px 0px 0px rgb(5, 32, 14);
+    font-size  : 16px;
+    color      : rgb(82, 82, 90);
+}
+
+.post-a-comment {
+    width           : 150px;
+    height          : 25px;
+    border-radius   : 5%;
+    background-color: rgb(247, 237, 182);
+    border          : none;
+    text-shadow     : 1px 0px 0px rgb(64, 59, 138);
+    box-shadow      : 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+    color           : rgb(26, 51, 2);
+    cursor          : pointer;
+    font-size       : 15px;
+    margin-bottom   : 55px;
+}
+
+.post-a-comment:hover {
+    background-color: rgb(197, 193, 152);
+}
+
+.comment-post-wrapper {
+    position: relative;
+    display : block;
+    margin  : 0 auto;
+}
+
+/*
+*  See the whole story button
+*/
+
+.see-the-whole-story-wrapper {
+    position: absolute;
+    z-index : 1;
+
+    margin     : auto;
+    width      : 100%;
+    bottom     : 0;
+    text-shadow: 1px 1px 1px rgb(21, 13, 128);
+}
+
+.see-the-whole-story {
+    text-decoration: rgb(185, 185, 11);
+}
+
+.see-the-whole-story:hover {
+    font-weight        : bold;
+    transform-origin   : bottom;
+    /* box-shadow      : inset 10px 70px 21px -5px rgba(69, 99, 68, 0.2), 5px 5px 15px 1px rgb(144, 166, 180); */
+    color              : #2bbdb1;
+    transform          : scale(1.1);
+    transition         : ease-in-out 0.4s;
+
+    border                 : 0.1px double rgba(234, 234, 238, 0.5);
+    border-top-right-radius: 5%;
+    border-top-left-radius : 5%;
 }
