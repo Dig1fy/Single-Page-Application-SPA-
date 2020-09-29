@@ -1,0 +1,108 @@
+{{> header}}
+<div class="stories-section-wrapper">
+  <div class="stories">
+
+    <div class="current-story-dashboardz">
+      <p class="story-publish-date">{{publishDate}}</p>
+      <div class="display-pictures.dashboard">
+        {{#each images}}
+        <img class="story-image-render" src="{{src}}" alt="">
+        {{else}}
+        <h5 class="text-center">NO STORY PICTURES</h5>
+        {{/each}}
+      </div>
+      <div class="xxx">
+        <p class="details-title">{{title}}</p>
+      </div>
+      <p class="details-by">by</p>
+      <p class="details-author">{{authorName}}</p>
+      <br>
+      <div class="story-description-wrapper">
+        <p class="story-details-description">{{description}}</p>
+      </div>
+      <br>
+      <p class="details-email">{{email}}</p>
+      <p class="details-phonenumber">{{phonenumber}}</p>
+
+      <div class="likes-comments-wrapper">
+
+        <form method="POST" action="#/story/details/likes/{{idFromFirebase}}">
+          <div class="details-likes-container">
+
+            <input type="image" class="details-like-btn" src="../../images/like-pic.png">
+
+            <div class="details-likes-wrapper">
+              <p id="details-likes">{{likes}} likes</p>
+            </div>
+
+            <div class="show-hide-comments-wrapper">
+              <label id="show-hide-comments-btn">{{comments.length}} comments</label>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+      {{!-- EDIT/DELETE the story --}}
+      {{#if isAuthor}}
+      <div class="author-btns-container">
+
+        <form action="#/story/edit/{{idFromFirebase}}" method="GET">
+          <button class="story-edit" type="submit">Edit the Story</button>
+        </form>
+
+        <form action="#/story/delete/{{idFromFirebase}}" method="GET">
+          <button class="story-delete" type="submit">Delete the story</button>
+        </form>
+
+      </div>
+      <br>
+      {{else}}
+
+      {{/if}}
+
+
+      {{!-- COMMENT SYSTEM START --}}
+      <form method="POST" action="#/story/details/comments/{{idFromFirebase}}">
+        <div id="comment-show-hide" style="display: none;">
+          <div id="comments-pic-info">
+            <div class="commenting-person-photo">
+            </div>
+            {{#each comments}}
+            <div class="entire-comment-wrapper">
+              <div class="comment-info">
+                <div class="comment-photo">
+                  <img class="comment-photo" src="{{photoURL}}" alt="">
+                </div>
+                <div class="story-comment-userInfo-wrapper">
+                  <div class="story-comment-userInfo">{{user}}:</div>
+                  <div class="story-comment-wrapper">
+                    <label class="story-comment-content">{{comment}}</label>
+                  </div>
+                  <div class="story-comment-datetime">{{dateTime}}</div>
+                </div>
+                <br>
+              </div>
+            </div>
+            {{else}}
+            <h4 class="text-center">No comments yet. Be the first to leave a comment!</h4>
+            {{/each}}
+
+          </div>
+
+          <br>
+          <textarea name="comment" id="story-comment" type="text " rows="1" cols="33"
+            placeholder="write a comment......"></textarea>
+          <button type="submit" class="post-a-comment">Post the comment</button>
+        </div>
+      </form>
+
+      {{!-- COMMENT SYSTEM END --}}
+
+      {{!-- If the current user is story's author, then he can edit/delete the story --}}
+
+    </div>
+
+  </div>
+</div>

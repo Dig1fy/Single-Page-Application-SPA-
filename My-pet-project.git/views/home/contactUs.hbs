@@ -1,0 +1,17 @@
+{{> header}}
+{{!-- TODO - find another library for sending emails --}}
+
+<form action="#/contactUs" method="POST">
+{{!-- This need an additional setup in google account - to receive less secure apps. Otherwise, nothing will be received  --}}
+<a href="mailto:' + test@gmail.com + '?subject=' +subject+ '&body=' +body+ '">email me here!</a>
+</form>
+
+
+
+
+
+
+
+
+
+{{> footer}}

@@ -1,0 +1,56 @@
+{{> header}}
+
+<div class="story-background-image">
+  <div class="story-wrapper">
+    <form class="create-xxx" action="#/story/edit/{{idFromFirebase}}" method="POST">
+      <div class="">
+        <h1 class="">Share your memory!</h1>
+        <p>Fill up the following information!</p>
+      </div>
+
+      <label class='new-story-title'>Title</label>
+      <p class="input-container">
+        <input class="story-input-field" value="{{title}}" type="title" id="title" name="title" placeholder="Unknown">
+
+      </p>
+
+      <div class="new-story-description">
+        <label for="xx">Description</label><br>
+        <textarea type="text" name="description" class="story-description" placeholder="Tell us what's happened"
+          required="">{{description}}</textarea>
+      </div>
+
+      <label class='new-story-email'>Your email adress</label>
+      <p class="input-container">
+        <input class="story-input-field" type="email" id="email" name="email" placeholder="Unknown" value="{{email}}">
+      </p>
+
+      <label class='new-story-phonenumber'>Your phonenumber</label>
+      <p class="input-container">
+        <input class="story-input-field" type="phonenumber" id="phonenumber" name="phonenumber" placeholder="Unknown"
+          value="{{phonenumber}}">
+
+      <div class="new-story-photos">
+        <div class="uploaded-img-wrapper">
+          <input id="upload-story-images" class="upload-story-images" name="storyImages" type="file"
+            multiple="multiple" />
+          <label class="label-upload-img" for="upload-story-images"><img src="../../images/new-story-img/upload.png"
+              class="upload-pic"> Upload pictures to your story</label>
+
+          <div id="preview-story-images">
+            {{#each images}}
+            <img class="story-image-render" src="{{src}}" alt="">
+            {{else}}
+            <h5 class="text-center">NO STORY PICTURES</h5>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+      <button class="submit-btn" type="submit">Save changes</button>
+    </form>
+  </div>
+</div>
+
+</div>
+{{> footer}}

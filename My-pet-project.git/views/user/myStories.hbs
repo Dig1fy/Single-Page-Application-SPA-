@@ -1,0 +1,40 @@
+{{> header}}
+{{!-- <div class="share-story-btn-wrapper">
+  <a href="#/sections/stories/create" class="create-story-btn" type="submit">Share your story</a>
+</div> --}}
+<h1>Your stories so far...</h1><br>
+<div class="stories-section-wrapper">
+  <div class="stories">
+      
+    {{#each myStories}}
+
+    <div class="current-story-dashboard">
+
+      <div class="display-pictures.dashboard">
+
+        {{#each images}}
+        <img class="story-image-render" src="{{src}}" alt="">
+        {{else}}
+        <h5 class="stories-no-story-picture">NO STORY PICTURES</h5>
+        {{/each}}
+      </div>
+      <div class="story-title">
+        <h3>{{title}}</h3>
+      </div>
+      <p class="by-story-article-owner">by</p>
+      <p class="story-article-owner">{{authorName}}</p>
+      <div class="story-paragraph">
+        <p>{{description}}</p>
+      </div>
+      <div class="see-the-whole-story-wrapper">
+        <a href="#/story/details/{{idFromFirebase}}" class="see-the-whole-story">See the whole story</a>
+      </div>
+    </div>
+
+    {{else}}
+    <h1 class="text-center">You have not shared any stories yet.</h1>
+    {{/each}}
+
+  </div>
+</div>
+{{> footer}}
