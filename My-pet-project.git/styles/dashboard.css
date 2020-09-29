@@ -147,6 +147,7 @@ h5 {
 .story-paragraph {
     text-align: left;
     color     : #837979;
+    padding: 5px;
 }
 
 .stories,
@@ -207,10 +208,6 @@ h5 {
     margin : 0 auto;
 }
 
-.share-story-btn-wrapper {
-    margin: 0 auto;
-}
-
 .authors-story-dot {
     position        : absolute;
     width           : 10px;
@@ -249,7 +246,7 @@ h5 {
 }
 
 .story-option-dropdown-content {
-    margin-top      : 8rem;
+    margin-top      : 10.7rem;
     display         : none;
     position        : relative;
     background-color: #f9f9f9;

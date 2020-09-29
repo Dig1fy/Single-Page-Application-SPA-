@@ -30,9 +30,16 @@
 }
 
 .share-story-btn-wrapper {
-    position   : relative;
+    /* position   : relative; */
     margin: 0 auto;
-    padding-top: 65px;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+.create-story-btn:hover {
+    background-color: rgb(152, 243, 4);
+    border-radius: 35%;
+    height: 150px;
 }
 
 .create-story-btn {
@@ -52,12 +59,6 @@
     font-size    : 17px;
     padding      : 10px 140px;
     border-radius: 7%;
-}
-
-.create-story-btn:hover {
-    background-color: rgb(152, 243, 4);
-    border-radius: 35%;
-    height: 150px;
 }
 
 .story-option-dropbtn {
