@@ -41,6 +41,10 @@ import controllers from '../controllers/index.js'
         //Contact us form - email sender
         this.get('#/contactUs', controllers.home.get.contactUs)
         this.post('#/contactUs', controllers.home.post.contactUs)
+
+        //Route header pages
+        this.get('#/about', controllers.home.get.aboutUs)
+        this.get('#/petCare', controllers.home.get.petCare)
     })
     
     

@@ -37,6 +37,24 @@ export default {
             extend(context).then(function () {
                 this.partial('../views/home/contactUs.hbs');
             })
+        },
+
+        aboutUs(context){
+            checkForUser(context)
+            displayUserName(context)
+
+            extend(context).then(function () {
+                this.partial('../views/home/aboutUs.hbs');
+            })
+        },
+
+        petCare(context){
+            checkForUser(context)
+            displayUserName(context)
+
+            extend(context).then(function () {
+                this.partial('../views/home/petCare.hbs');
+            })
         }
     },
 
